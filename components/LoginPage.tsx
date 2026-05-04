@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import { Layout, Sparkles } from 'lucide-react';
 
 interface LoginPageProps {
   onLogin: () => void;
@@ -55,38 +54,75 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin, loadingText = "In
        <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-indigo-100/50 rounded-full blur-[100px]" />
        
        <div className="relative z-10 flex flex-col items-center animate-in fade-in zoom-in duration-700">
-          {/* Logo Container */}
-          <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-[32px] flex items-center justify-center shadow-2xl shadow-blue-200 mb-10 animate-bounce duration-[3000ms]">
-             <Layout className="w-12 h-12 text-white" />
-          </div>
+          {/* Natively Recreated Logo Integration with Interactive Fill */}
+          <div className="relative overflow-hidden rounded-[3rem] px-16 py-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-white/60 bg-white/40 backdrop-blur-xl mb-4 animate-in fade-in zoom-in duration-1000">
+            {/* Rectangular Fill Overlay (Background) */}
+            <div 
+              className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 transition-all duration-300 ease-out z-0"
+              style={{ width: `${progress}%` }}
+            />
+            {/* Glowing Edge Line */}
+            <div 
+              className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-blue-500/40 to-transparent transition-all duration-300 ease-out z-0 shadow-[0_0_20px_rgba(59,130,246,0.6)]"
+              style={{ left: `calc(${progress}% - 1px)` }}
+            />
 
-          {/* Typography */}
-          <h1 className="text-5xl font-black text-slate-900 tracking-tighter mb-4">
-             Event Artemis
-          </h1>
-          
-          <div className="flex items-center gap-3 mb-12 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/60 shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-            </span>
-            <p className="text-slate-500 text-xs font-bold uppercase tracking-[0.2em]">
-               {loadingText}
-            </p>
-          </div>
+            <div 
+              className="relative z-10 flex flex-col items-center transition-transform duration-300 ease-out"
+              style={{ transform: `scale(${1 + (progress / 100) * 0.1})` }}
+            >
+              <div className="flex items-center relative">
+                {/* Vector Logo Mark */}
+                <div className="relative flex-shrink-0 animate-pulse drop-shadow-xl" style={{ animationDuration: '3s' }}>
+                  <svg width="130" height="130" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="logo-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#2563EB" />
+                        <stop offset="50%" stopColor="#4F46E5" />
+                        <stop offset="100%" stopColor="#9333EA" />
+                      </linearGradient>
+                      <linearGradient id="sparkle-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#6366f1" />
+                        <stop offset="100%" stopColor="#c084fc" />
+                      </linearGradient>
+                      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
 
-          {/* Custom Progress Bar */}
-          <div className="w-64 h-1.5 bg-slate-100 rounded-full overflow-hidden shadow-inner">
-             <div 
-               className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-300 ease-out" 
-               style={{ width: `${progress}%` }}
-             />
-          </div>
-          
-          {/* Footer Metadata */}
-          <div className="mt-6 flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest opacity-60">
-             <Sparkles className="w-3 h-3" />
-             <span>Secure Student Gateway V3.0</span>
+                    <g filter="url(#glow)">
+                      {/* Primary Sparkle */}
+                      <path d="M 45 5 Q 45 25 65 25 Q 45 25 45 45 Q 45 25 25 25 Q 45 25 45 5 Z" fill="url(#sparkle-gradient)" />
+                      {/* Secondary Sparkle */}
+                      <path d="M 75 30 Q 75 40 85 40 Q 75 40 75 50 Q 75 40 65 40 Q 75 40 75 30 Z" fill="url(#sparkle-gradient)" />
+
+                      {/* The 'A' Framework */}
+                      <path d="M 20 100 L 50 30 L 80 100" stroke="url(#logo-gradient)" strokeWidth="16" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                      
+                      {/* The Swoosh */}
+                      <path d="M 10 75 Q 50 95 105 45" stroke="url(#logo-gradient)" strokeWidth="14" strokeLinecap="round" fill="none" />
+                    </g>
+                  </svg>
+                </div>
+
+                {/* Vertical Separator */}
+                <div className="w-[2px] h-[75px] bg-slate-200 mx-6 rounded-full shadow-sm"></div>
+
+                {/* Branding Typography */}
+                <div className="flex flex-col justify-center text-left pt-2">
+                  <span className="text-[52px] leading-[0.85] font-black text-[#0B132B] tracking-tight">event</span>
+                  <span className="text-[52px] leading-[1.1] font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-500 tracking-tight">artemis</span>
+                </div>
+              </div>
+
+              {/* Subtitle Track */}
+              <div className="flex items-center gap-4 mt-6 opacity-90">
+                 <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-blue-500 rounded-full"></div>
+                 <span className="text-[11px] font-bold tracking-[0.3em] text-[#0B132B] uppercase">Discover Events. Create Memories.</span>
+                 <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-purple-500 rounded-full"></div>
+              </div>
+            </div>
           </div>
        </div>
     </div>

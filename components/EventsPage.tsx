@@ -166,7 +166,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     featured: true,
     prizePool: "₹50,000 Instant",
     tracks: ["Speed Coding", "Bug Fixing"],
-    posterUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000",
     description: "A surprise lightning round of competitive programming. The clock is ticking, and the deadline is approaching fast.",
     jokes: ["Code faster, the server bills are due.", "Urgent? I thought you said URGENT."],
     timeline: [ { time: urgentInfo.timeStr, title: "Sprint Start", desc: "Go go go!" } ],
@@ -190,7 +190,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 42,
     prizePool: "₹5,00,000",
     tracks: ["Web3 Foundations", "HFT Optimization", "Quantum Ready Apps"],
-    posterUrl: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1540575467063-178cb50ee898?auto=format&fit=crop&q=80&w=1000",
     description: "The biggest tech convergence in the financial capital. From high-frequency trading algorithms to decentralized architectures. Experience the spirit of Mumbai's tech ecosystem without the traffic.",
     jokes: [
       "Mumbai jaana hai ya nahi- Take part in mumbai hacks"
@@ -205,9 +205,9 @@ export const EVENTS_MOCK: CampusEvent[] = [
     certification: true,
     organizerContact: { phone: "+91 22 2572 2545", email: "summit2026@iitb.ac.in" },
     gallery: [
-      "https://images.unsplash.com/photo-1475721027767-4d096ca0c479?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1000"
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1614064641913-6b17fda71221?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1000"
     ]
   },
   {
@@ -225,7 +225,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     featured: true,
     prizePool: "$50,000",
     tracks: ["LLM Agents", "Computer Vision", "AI Safety", "Generative Art"],
-    posterUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
     description: "The ultimate showdown of neural networks. Build the future of AGI in 48 hours. Dive into high-concurrency challenges and state-of-the-art inference optimization. No sleep, just code. This event brings together the brightest minds to solve real-world problems using the latest in AI technology.",
     jokes: ["AI Hackathon? Bhai, ChatGPT se copy-paste karna 'hacking' nahi hota."],
     timeline: [
@@ -273,9 +273,9 @@ export const EVENTS_MOCK: CampusEvent[] = [
     ],
     organizerContact: { phone: "+1 (555) 123-4567", email: "ai.hackathon@global.org" },
     gallery: [
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1550305080-4e029753abcf?auto=format&fit=crop&q=80&w=1000"
+      "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1000"
     ]
   },
   {
@@ -292,7 +292,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 4,
     prizePool: "Ethical Hacker Vouchers",
     tracks: ["Network Infiltration", "Cloud Security"],
-    posterUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1614064641913-6b17fda71221?auto=format&fit=crop&q=80&w=1000",
     description: "Defend your infrastructure against simulated zero-day attacks. The ultimate capture the flag event. One breach and you're out.",
     jokes: ["Your password is 'password123', isn't it? Please don't enter."],
     timeline: [{ time: "12:00 PM", title: "Breach Phase", desc: "Initial infiltration attempts start." }],
@@ -315,7 +315,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     attendees: 120,
     sectionParticipants: 8,
     tracks: ["Figma 101", "Design Systems"],
-    posterUrl: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1000",
     description: "Sacred art of whitespace and color theory. Learn why 'making the logo bigger' is a sin and how to build components that don't break.",
     jokes: ["UI Master banega? Tera choice of colors dekh ke meri aankhein ro rahi hain."],
     timeline: [{ time: "10:00 AM", title: "Intro to Figma", desc: "Basics of layout." }],
@@ -339,7 +339,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 12,
     prizePool: "$15,000",
     tracks: ["HFT", "Crypto Arbitrage", "Sentiment Analysis"],
-    posterUrl: "https://images.unsplash.com/photo-1611974765270-ca12586343bb?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=1000",
     description: "Build the fastest trading bot. We provide the historical data; you provide the alpha. Warning: High variance event.",
     jokes: ["Buy high, sell low, right?", "My strategy is purely hope-based."],
     timeline: [
@@ -366,7 +366,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 45,
     prizePool: "₹2,00,000",
     tracks: ["Deathmatch", "Obstacle Course"],
-    posterUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=1000",
     description: "Sparks, metal, and destruction. Bring your battle bots to the arena and fight for glory. Safety goggles mandatory.",
     jokes: ["It's not a bug, it's a surprise weapon.", "My robot is peaceful, said no one ever."],
     timeline: [
@@ -379,8 +379,8 @@ export const EVENTS_MOCK: CampusEvent[] = [
     certification: true,
     organizerContact: { phone: "+1 (555) 444-5555", email: "robotics@artemis.events" },
     gallery: [
-      "https://images.unsplash.com/photo-1563206767-5b1d972f9fb7?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1616422285623-13ff0162193c?auto=format&fit=crop&q=80&w=1000"
+      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1000",
+      "https://images.unsplash.com/photo-1524143986875-3b098d78b363?auto=format&fit=crop&q=80&w=1000"
     ]
   },
   {
@@ -396,7 +396,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     attendees: 50,
     sectionParticipants: 10,
     tracks: ["Memory Safety", "Concurrency"],
-    posterUrl: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
     description: "Ditch C++. Embrace the crab. Learn memory safety without garbage collection.",
     jokes: ["I'm currently fighting the borrow checker.", "Rewrite it in Rust."],
     timeline: [{ time: "02:00 PM", title: "Hello World", desc: "Setup cargo." }],
@@ -419,7 +419,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     attendees: 500,
     sectionParticipants: 100,
     tracks: ["Live Music", "Open Mic"],
-    posterUrl: "https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1000",
     description: "Under the stars, music that heals. Bring your instruments or just your ears.",
     jokes: ["I play the triangle professionally.", "Free food? Count me in."],
     timeline: [{ time: "06:00 PM", title: "Opening Act", desc: "Local band performance." }],
@@ -443,7 +443,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 20,
     prizePool: "Steam Credits",
     tracks: ["Pixel Art", "Unity", "Godot"],
-    posterUrl: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
     description: "Make a game from scratch in 48 hours. Theme revealed at the start. Sleep is optional.",
     jokes: ["It's not a glitch, it's a feature.", "My physics engine is broken."],
     timeline: [{ time: "09:00 AM", title: "Theme Reveal", desc: "Start coding." }],
@@ -466,7 +466,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     attendees: 200,
     sectionParticipants: 15,
     tracks: ["Smart Contracts", "DAOs"],
-    posterUrl: "https://images.unsplash.com/photo-1621504450168-b8c4375c2b36?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1639762681485-074b7f4ecb3c?auto=format&fit=crop&q=80&w=1000",
     description: "Understanding the future of finance. Beyond the hype of NFTs.",
     jokes: ["WAGMI", "HODL your questions till the end."],
     timeline: [{ time: "11:00 AM", title: "Keynote", desc: "Ethereum 2.0 roadmap." }],
@@ -490,7 +490,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 8,
     prizePool: "Seed Funding",
     tracks: ["SaaS", "D2C"],
-    posterUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=1000",
     description: "Got an idea? Pitch it to real VCs. 5 minutes to impress.",
     jokes: ["We are the Uber for Tacos.", "Pre-revenue, pre-product, post-hype."],
     timeline: [{ time: "04:00 PM", title: "Pitches Start", desc: "3 min pitch, 2 min Q&A." }],
@@ -514,7 +514,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 12,
     prizePool: "Wacom Tablets",
     tracks: ["UX Research", "Prototyping"],
-    posterUrl: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&q=80&w=1000",
     description: "Solve a user problem in 8 hours. Sketch, wireframe, and prototype.",
     jokes: ["Make the logo bigger.", "Comic Sans is forbidden."],
     timeline: [{ time: "09:00 AM", title: "Problem Brief", desc: "User personas." }],
@@ -537,7 +537,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     attendees: 90,
     sectionParticipants: 20,
     tracks: ["Pandas", "Scikit-Learn"],
-    posterUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1000",
     description: "From CSV to predictions. Learn how to win data science competitions.",
     jokes: ["It's just linear regression in a trench coat.", "Data cleaning is 90% of the job."],
     timeline: [{ time: "03:00 PM", title: "EDA", desc: "Exploratory Data Analysis." }],
@@ -561,7 +561,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 8,
     prizePool: "DJI Gear",
     tracks: ["FPV Racing"],
-    posterUrl: "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1524143986875-3b098d78b363?auto=format&fit=crop&q=80&w=1000",
     description: "High speed FPV drone racing through obstacle courses.",
     jokes: ["I believe I can fly... into a tree.", "Propellers are sharp."],
     timeline: [{ time: "11:00 AM", title: "Qualifiers", desc: "Time trials." }],
@@ -585,7 +585,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     sectionParticipants: 10,
     prizePool: "AWS Credits",
     tracks: ["Reinforcement Learning"],
-    posterUrl: "https://images.unsplash.com/photo-1526666923127-b2970f64b422?auto=format&fit=crop&q=80&w=1000",
+    posterUrl: "https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&fit=crop&q=80&w=1000",
     description: "Train a reinforcement learning model to drive a car around a track autonomously.",
     jokes: ["My model drives better than me.", "Reward function hacking."],
     timeline: [{ time: "10:00 AM", title: "Model Upload", desc: "Testing on track." }],
@@ -616,12 +616,12 @@ interface ImageWithFallbackProps {
 // Category-based default images
 const getCategoryDefaultImage = (category: string): string => {
   const categoryImages: Record<string, string> = {
-    'Competition': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000',
-    'Workshop': 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000',
-    'Fest': 'https://images.unsplash.com/photo-1511379938547-c1f69b13d835?auto=format&fit=crop&q=80&w=1000',
-    'Seminar': 'https://images.unsplash.com/photo-1540575467063-178cb50ee898?auto=format&fit=crop&q=80&w=1000',
+    'Competition': 'https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&q=80&w=1000',
+    'Workshop': 'https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=1000',
+    'Fest': 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&q=80&w=1000',
+    'Seminar': 'https://images.unsplash.com/photo-1475721027767-4d096ca0c479?auto=format&fit=crop&q=80&w=1000',
   };
-  return categoryImages[category] || 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000';
+  return categoryImages[category] || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000';
 };
 
 const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, className, fallbackSrc }) => {
@@ -697,6 +697,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 }) => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeNav, setActiveNav] = useState('tour-closing');
   const [exploringEvent, setExploringEvent] = useState<CampusEvent | null>(null);
   
   const [now, setNow] = useState(new Date());
@@ -938,7 +939,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                 } shadow-[0_4px_20px_rgba(0,0,0,0.03)]`}
               >
                 <div 
-                  className="relative aspect-[4/3] overflow-hidden cursor-pointer" 
+                  className="relative aspect-[16/9] overflow-hidden cursor-pointer" 
                   onClick={() => { setExploringEvent(event); onEventView?.(event.id); }}
                 >
                   <ImageWithFallback 
@@ -948,17 +949,17 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                     fallbackSrc={getCategoryDefaultImage(event.category)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-8">
-                     <span className="text-white text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-2">
-                        View Details <ArrowRight className="w-4 h-4" />
+                     <span className="text-white text-xs font-black uppercase tracking-[0.3em] flex items-center gap-2">
+                        View Details <ArrowRight className="w-5 h-5" />
                      </span>
                   </div>
                   
                   <div className="absolute top-5 left-5 flex gap-2 z-20">
-                    <div className="bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 shadow-sm border border-slate-100">
+                    <div className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm border border-slate-100">
                       {event.category}
                     </div>
                     {!viewedEventIds.has(event.id) && !isPast && (
-                       <div className="bg-rose-500 text-white px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest shadow-lg shadow-rose-500/20 flex items-center gap-1.5">
+                       <div className="bg-rose-500 text-white px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg shadow-rose-500/20 flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-sm" />
                           NEW
                        </div>
@@ -966,14 +967,14 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                   </div>
 
                   {timeString && (
-                     <div className={`absolute bottom-5 right-5 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest shadow-lg flex items-center gap-2 border ${
+                     <div className={`absolute bottom-5 right-5 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest shadow-lg flex items-center gap-2 border ${
                         isPast 
                         ? 'bg-slate-100 text-slate-500 border-slate-200'
                         : isUrgent 
                         ? 'bg-rose-500 text-white border-rose-400 animate-pulse' 
                         : 'bg-slate-900/90 backdrop-blur text-white border-white/10'
                      }`}>
-                        {isPast ? <History className="w-3 h-3" /> : (isUrgent ? <Flame className="w-3 h-3 fill-white animate-bounce" /> : <Timer className="w-3 h-3" />)}
+                        {isPast ? <History className="w-4 h-4" /> : (isUrgent ? <Flame className="w-4 h-4 fill-white animate-bounce" /> : <Timer className="w-4 h-4" />)}
                         {timeString}
                      </div>
                   )}
@@ -990,38 +991,52 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                   )}
                 </div>
                 
-                <div className="p-8">
-                  <div className="flex items-center gap-2 mb-2">
-                     <CalendarDays className="w-3.5 h-3.5 text-slate-400" />
-                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{event.date}</span>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                     <CalendarDays className="w-4 h-4 text-slate-400" />
+                     <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{event.date}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-800 leading-tight mb-8 min-h-[3rem] line-clamp-2">
+                  <h3 className="text-lg font-bold text-slate-800 leading-tight mb-4 min-h-[3.5rem] line-clamp-2">
                     {event.title}
                   </h3>
+                  
+                  <div className="flex items-center gap-3 mb-5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                    <div className="flex -space-x-2 shrink-0">
+                      {Array.from({ length: 3 }).map((_, i) => (
+                        <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-slate-200 shadow-sm" style={{ backgroundImage: `url(https://i.pravatar.cc/100?img=${(event.dayOfMonth % 15) + i + 1})`, backgroundSize: 'cover' }} />
+                      ))}
+                    </div>
+                    <span className="text-xs font-medium text-slate-500 tracking-wide">
+                      <strong className="text-slate-700 font-black">{event.attendees.toLocaleString()}</strong>
+                      {event.category === 'Competition' ? ' participants joined' : 
+                       event.category === 'Workshop' ? ' devs participating' : 
+                       event.category === 'Fest' ? ' teams enrolled' : ' currently registered'}
+                    </span>
+                  </div>
                   
                   <div className="flex flex-col gap-3">
                     <button 
                       onClick={() => { setExploringEvent(event); onEventView?.(event.id); }}
-                      className={`w-full py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-xl ${
+                      className={`w-full py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-xl ${
                          isUrgent 
                          ? 'bg-rose-500 hover:bg-rose-600 text-white shadow-rose-200'
                          : 'bg-slate-900 hover:bg-black text-white shadow-slate-200'
                       }`}
                     >
-                      {isUrgent && <Flame className="w-3 h-3 fill-white" />}
+                      {isUrgent && <Flame className="w-4 h-4 fill-white" />}
                       Explore Details
                     </button>
                     
                     <div className="flex gap-3">
                        <button 
                          onClick={() => toggleInterested(event.id)}
-                         className={`flex-1 py-3.5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 border ${
+                         className={`flex-1 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all flex items-center justify-center gap-2 border ${
                            isInterested 
                              ? 'bg-rose-50 text-rose-500 border-rose-100' 
                              : 'bg-white text-slate-400 border-slate-100 hover:border-rose-200'
                          }`}
                        >
-                         <Heart className={`w-3.5 h-3.5 ${isInterested ? 'fill-rose-500' : ''}`} />
+                         <Heart className={`w-4 h-4 ${isInterested ? 'fill-rose-500' : ''}`} />
                          {isInterested ? 'Saved' : 'Interested'}
                        </button>
                        <button 
@@ -1047,7 +1062,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
   };
 
   return (
-    <div className={`h-full flex flex-col space-y-16 animate-in fade-in duration-1000 pb-32 overflow-y-auto no-scrollbar transition-all duration-500 ${isCalendarOpen ? 'pr-[320px]' : ''}`}>
+    <div className={`h-full flex flex-col animate-in fade-in duration-1000 pb-32 overflow-y-auto no-scrollbar transition-all duration-500 ${isCalendarOpen ? 'pr-[320px]' : ''}`}>
       
       {showTutorial && (
         <TutorialOverlay 
@@ -1068,42 +1083,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         </div>
       </div>
 
-      {/* SPOTLIGHT SECTION */}
-      <section className="relative w-full rounded-[48px] overflow-hidden bg-slate-900 aspect-[21/9] flex items-center group shadow-2xl">
-         <ImageWithFallback 
-           src="https://images.unsplash.com/photo-1540575861501-7ce0e220abb4?auto=format&fit=crop&q=80&w=2000" 
-           alt="Header" 
-           className="absolute inset-0 w-full h-full opacity-40 grayscale-[0.3] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000"
-         />
-         <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(15,23,42,1)_20%,rgba(15,23,42,0.1)_100%)]" />
-         
-         <div className="relative z-10 p-16 max-w-2xl space-y-8">
-            <div className="flex items-center gap-3">
-               <span className="bg-rose-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl shadow-rose-500/20">Active Spotlight</span>
-               <div id="tour-timer" className="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-widest">
-                  <Timer className="w-4 h-4 animate-spin-slow" /> Starts in 4 Days
-               </div>
-            </div>
-            <h1 className="text-6xl font-black text-white tracking-tighter leading-[0.9]">GLOBAL AI<br/>HACKATHON</h1>
-            <p className="text-lg text-slate-300 font-medium leading-relaxed max-w-lg">
-               The ultimate 48-hour sprint to build AGI-ready solutions. 2500+ participants. $50k in prizes.
-            </p>
-            <div className="flex items-center gap-4 pt-4">
-               <button 
-                  onClick={() => { const e = EVENTS_MOCK.find(ev => ev.id === 'e1'); if(e) { setExploringEvent(e); onEventView?.(e.id); } }} 
-                  className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl hover:bg-slate-50 transition-all"
-               >
-                  Explore Now
-               </button>
-               <button className="px-8 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white/20 transition-all">
-                  Guide Book
-               </button>
-            </div>
-         </div>
-      </section>
-
-      {/* SEARCH AND FILTER BAR */}
-      <div className="flex flex-col lg:flex-row items-end justify-between gap-8 px-4">
+      {/* SEARCH AND FILTER BAR (Shifted Upward) */}
+      <div className="flex flex-col lg:flex-row items-end justify-between gap-8 px-4 mt-8">
         <div className="max-w-xl w-full">
            <div className="flex items-center gap-3 mb-4">
               <Zap className="w-5 h-5 text-amber-500 fill-amber-500" />
@@ -1137,8 +1118,67 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         </div>
       </div>
 
+      {/* CATEGORY NAVIGATION BUTTONS */}
+      <div className="flex flex-wrap items-center gap-4 px-4 mt-2 mb-4">
+        {[
+          { id: 'tour-closing', label: 'Closing Soon' },
+          { id: 'tour-upcoming', label: 'Upcoming Feed' },
+          { id: 'tour-past', label: 'Past Feed' }
+        ].map(nav => (
+          <button
+            key={nav.id}
+            onClick={() => {
+               setActiveNav(nav.id);
+               const el = document.getElementById(nav.id);
+               if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+            className={`flex-1 min-w-[200px] py-4 rounded-2xl font-bold text-sm transition-all duration-300 border-2 ${
+               activeNav === nav.id 
+                 ? 'border-blue-600 bg-blue-50 text-blue-700 shadow-md shadow-blue-100' 
+                 : 'border-transparent bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 hover:border-blue-100 shadow-sm'
+            }`}
+          >
+            {nav.label}
+          </button>
+        ))}
+      </div>
+
+      {/* SPOTLIGHT SECTION */}
+      <section className="relative w-full rounded-[48px] overflow-hidden bg-slate-900 aspect-[21/9] flex items-center group shadow-2xl mt-8">
+         <ImageWithFallback 
+           src="https://images.unsplash.com/photo-1540575467063-178cb50ee898?auto=format&fit=crop&q=80&w=1000" 
+           alt="Header" 
+           className="absolute inset-0 w-full h-full opacity-40 grayscale-[0.3] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000"
+         />
+         <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(15,23,42,1)_20%,rgba(15,23,42,0.1)_100%)]" />
+         
+         <div className="relative z-10 p-16 max-w-2xl space-y-8">
+            <div className="flex items-center gap-3">
+               <span className="bg-rose-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl shadow-rose-500/20">Active Spotlight</span>
+               <div id="tour-timer" className="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-widest">
+                  <Timer className="w-4 h-4 animate-spin-slow" /> Starts in 4 Days
+               </div>
+            </div>
+            <h1 className="text-6xl font-black text-white tracking-tighter leading-[0.9]">GLOBAL AI<br/>HACKATHON</h1>
+            <p className="text-lg text-slate-300 font-medium leading-relaxed max-w-lg">
+               The ultimate 48-hour sprint to build AGI-ready solutions. 2500+ participants. $50k in prizes.
+            </p>
+            <div className="flex items-center gap-4 pt-4">
+               <button 
+                  onClick={() => { const e = EVENTS_MOCK.find(ev => ev.id === 'e1'); if(e) { setExploringEvent(e); onEventView?.(e.id); } }} 
+                  className="px-8 py-4 bg-white text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] shadow-2xl hover:bg-slate-50 transition-all"
+               >
+                  Explore Now
+               </button>
+               <button className="px-8 py-4 bg-white/10 backdrop-blur-xl text-white border border-white/20 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white/20 transition-all">
+                  Guide Book
+               </button>
+            </div>
+         </div>
+      </section>
+
       {/* EVENT GRIDS */}
-      <div className="space-y-32 px-4">
+      <div className="space-y-16 px-4 mt-12">
         {renderEventGrid(categories.nearDeadline, "Closing Soon", AlertCircle, "bg-rose-500", "tour-closing")}
         {renderEventGrid(categories.upcoming, "Upcoming Feed", CalendarCheck, "bg-blue-600", "tour-upcoming")}
         {renderEventGrid(categories.past, "Past Archives", Ticket, "bg-slate-800", "tour-past")}
