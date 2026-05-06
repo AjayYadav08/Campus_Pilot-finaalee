@@ -3,7 +3,8 @@ import { createPortal } from 'react-dom';
 import { 
   X, Users, CalendarDays, Clock, MapPin, History, UserPlus, ArrowRight, Heart, 
   ThumbsDown, CheckCircle2, Sparkles, Camera, Gift, Cpu, Award, Timer, HelpCircle, 
-  LifeBuoy, Phone, Mail, GraduationCap, Trophy, Shield, Briefcase, Zap 
+  LifeBuoy, Phone, Mail, GraduationCap, Trophy, Shield, Briefcase, Zap,
+  CreditCard, Info, ListCheck, Ban, Building2
 } from 'lucide-react';
 import { CampusEvent } from '../types';
 import ImageWithFallback from '../ImageWithFallback';
@@ -34,7 +35,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   markNotInterested
 }) => {
   return createPortal(
-    <div className="fixed inset-0 z-[9999] bg-white overflow-y-auto font-sans will-change-scroll">
+    <div className="fixed inset-0 z-[9999] bg-white overflow-y-auto font-sans">
        
        <button 
           onClick={closeExplorer} 
@@ -45,7 +46,12 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
        </button>
 
        <div className="w-full h-[50vh] relative bg-slate-900">
-          <ImageWithFallback src={exploringEvent.posterUrl} alt="Cover" className="w-full h-full object-cover opacity-90" />
+          <ImageWithFallback 
+            src={exploringEvent.posterUrl} 
+            alt="Cover" 
+            className="w-full h-full object-cover" 
+            loading="eager"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-black/50" />
        </div>
 
@@ -162,14 +168,53 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2 space-y-12">
-                   <div>
+                   <div className="bg-slate-50 rounded-[32px] p-8 border border-slate-100">
                       <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                         <Sparkles className="w-4 h-4 text-amber-500" /> About Event
+                         <Info className="w-4 h-4 text-blue-500" /> Overview
                       </h3>
-                      <p className="text-lg text-slate-600 leading-relaxed">
+                      <p className="text-lg text-slate-600 leading-relaxed font-medium">
                          {exploringEvent.description}
                       </p>
                    </div>
+
+                   {exploringEvent.format && (
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm">
+                           <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                              <Building2 className="w-4 h-4 text-indigo-500" /> Event Format
+                           </h3>
+                           <div className="space-y-4">
+                              <div className="flex items-center justify-between">
+                                 <span className="text-xs font-bold text-slate-400">Type</span>
+                                 <span className="text-sm font-black text-slate-800">{exploringEvent.format.type}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                 <span className="text-xs font-bold text-slate-400">Participation</span>
+                                 <span className="text-sm font-black text-slate-800">{exploringEvent.format.mode}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                 <span className="text-xs font-bold text-slate-400">Duration</span>
+                                 <span className="text-sm font-black text-slate-800">{exploringEvent.duration || 'N/A'}</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div className="bg-white rounded-[32px] p-8 border border-slate-100 shadow-sm">
+                           <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                              <ListCheck className="w-4 h-4 text-emerald-500" /> Rounds
+                           </h3>
+                           <div className="space-y-3">
+                              {exploringEvent.format.rounds.map((round, i) => (
+                                <div key={i} className="flex items-center gap-3">
+                                   <div className="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center text-[10px] font-black text-emerald-600 border border-emerald-100">
+                                      {i + 1}
+                                   </div>
+                                   <span className="text-sm font-bold text-slate-700">{round}</span>
+                                </div>
+                              ))}
+                           </div>
+                        </div>
+                     </div>
+                   )}
 
                   {exploringEvent.gallery && (
                      <div>
@@ -207,18 +252,71 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                     </div>
                   )}
 
-                   {exploringEvent.tracks && exploringEvent.tracks.length > 0 && (
-                      <div>
-                         <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                            <Cpu className="w-4 h-4 text-blue-500" /> Focus Tracks
+                  {exploringEvent.tracks && exploringEvent.tracks.length > 0 && (
+                     <div>
+                        <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                           <Cpu className="w-4 h-4 text-blue-500" /> Focus Tracks
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                           {exploringEvent.tracks.map(track => (
+                              <span key={track} className="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 text-slate-700 text-xs font-bold shadow-sm hover:bg-white hover:shadow-md transition-all cursor-default">
+                                 {track}
+                              </span>
+                           ))}
+                        </div>
+                     </div>
+                  )}
+
+                   {(exploringEvent.rules || exploringEvent.dos || exploringEvent.donts) && (
+                      <div className="space-y-6">
+                         <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-slate-900" /> Rules & Guidelines
                          </h3>
-                         <div className="flex flex-wrap gap-2">
-                            {exploringEvent.tracks.map(track => (
-                               <span key={track} className="px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 text-slate-700 text-xs font-bold shadow-sm hover:bg-white hover:shadow-md transition-all cursor-default">
-                                  {track}
-                               </span>
-                            ))}
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {exploringEvent.dos && (
+                              <div className="bg-emerald-50/50 rounded-[32px] p-8 border border-emerald-100">
+                                 <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-6 flex items-center gap-2">
+                                    <CheckCircle2 className="w-4 h-4" /> Do's
+                                 </h4>
+                                 <ul className="space-y-4">
+                                    {exploringEvent.dos.map((item, i) => (
+                                      <li key={i} className="text-xs font-bold text-slate-700 flex items-start gap-3">
+                                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
+                                         {item}
+                                      </li>
+                                    ))}
+                                 </ul>
+                              </div>
+                            )}
+                            {exploringEvent.donts && (
+                              <div className="bg-rose-50/50 rounded-[32px] p-8 border border-rose-100">
+                                 <h4 className="text-[10px] font-black text-rose-600 uppercase tracking-widest mb-6 flex items-center gap-2">
+                                    <Ban className="w-4 h-4" /> Don'ts
+                                 </h4>
+                                 <ul className="space-y-4">
+                                    {exploringEvent.donts.map((item, i) => (
+                                      <li key={i} className="text-xs font-bold text-slate-700 flex items-start gap-3">
+                                         <div className="w-1.5 h-1.5 rounded-full bg-rose-400 mt-1.5 shrink-0" />
+                                         {item}
+                                      </li>
+                                    ))}
+                                 </ul>
+                              </div>
+                            )}
                          </div>
+                         {exploringEvent.rules && (
+                           <div className="bg-slate-50 rounded-[32px] p-8 border border-slate-100">
+                              <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">General Rules</h4>
+                              <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+                                 {exploringEvent.rules.map((rule, i) => (
+                                   <li key={i} className="text-xs font-bold text-slate-600 flex items-start gap-3">
+                                      <div className="w-1 h-1 rounded-full bg-slate-400 mt-1.5 shrink-0" />
+                                      {rule}
+                                   </li>
+                                 ))}
+                              </ul>
+                           </div>
+                         )}
                       </div>
                    )}
 
@@ -314,22 +412,29 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                       
                       <div className="space-y-5">
                          <div>
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Registration Fee</span>
+                            <span className="text-sm font-black text-slate-900 flex items-center gap-2">
+                               <CreditCard className="w-4 h-4 text-slate-400" />
+                               {exploringEvent.isPaid ? exploringEvent.registrationFee : 'Free'}
+                            </span>
+                         </div>
+                         <div>
                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Eligibility</span>
-                            <span className="text-sm font-bold text-slate-800 flex items-center gap-2">
+                            <span className="text-sm font-black text-slate-800 flex items-center gap-2">
                                <GraduationCap className="w-4 h-4 text-slate-400" />
                                {exploringEvent.eligibility}
                             </span>
                          </div>
                          <div>
                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Team Size</span>
-                            <span className="text-sm font-bold text-slate-800 flex items-center gap-2">
+                            <span className="text-sm font-black text-slate-800 flex items-center gap-2">
                                <Users className="w-4 h-4 text-slate-400" />
                                {exploringEvent.teamSize}
                             </span>
                          </div>
                          <div>
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Prize Pool</span>
-                            <span className="text-sm font-bold text-slate-800 flex items-center gap-2">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Total Prize Pool</span>
+                            <span className="text-sm font-black text-blue-600 flex items-center gap-2">
                                <Trophy className="w-4 h-4 text-amber-500" />
                                {exploringEvent.prizePool || 'N/A'}
                             </span>
@@ -371,17 +476,6 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                      </div>
                    )}
 
-                   <div className="p-8 rounded-[32px] bg-gradient-to-br from-indigo-600 to-blue-700 text-white shadow-xl shadow-blue-200 relative overflow-hidden group">
-                      <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-3xl group-hover:scale-150 transition-transform " />
-                      
-                      <div className="relative z-10">
-                         <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mb-4 backdrop-blur-sm">
-                           <Zap className="w-5 h-5 fill-white" />
-                         </div>
-                         <div className="text-4xl font-black mb-1 tracking-tight">{exploringEvent.xp} XP</div>
-                         <p className="text-blue-100 text-xs font-bold uppercase tracking-widest opacity-80">Earned upon completion</p>
-                      </div>
-                   </div>
                 </div>
              </div>
           </div>

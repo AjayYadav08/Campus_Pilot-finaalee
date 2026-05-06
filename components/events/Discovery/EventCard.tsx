@@ -59,7 +59,7 @@ const EventCard: React.FC<EventCardProps> = ({
             <span className="text-white text-[10px] font-black uppercase tracking-widest">{event.category}</span>
           </div>
           {event.featured && (
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-400 rounded-xl shadow-lg animate-pulse">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-400 rounded-xl shadow-lg">
                <Zap className="w-3 h-3 text-slate-900 fill-slate-900" />
                <span className="text-slate-900 text-[9px] font-black uppercase tracking-widest">Featured</span>
             </div>
@@ -67,7 +67,7 @@ const EventCard: React.FC<EventCardProps> = ({
         </div>
 
         {isRegistered && (
-          <div className="absolute top-5 right-5 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white animate-bounce">
+          <div className="absolute top-5 right-5 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white">
             <Ticket className="w-5 h-5" />
           </div>
         )}
@@ -113,7 +113,7 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
           {isUrgent && (
             <div className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 text-rose-600 rounded-xl border border-rose-100">
-               <div className="w-1.5 h-1.5 bg-rose-600 rounded-full animate-ping" />
+               <div className="w-1.5 h-1.5 bg-rose-600 rounded-full" />
                <span className="text-[9px] font-black uppercase tracking-widest">Urgent</span>
             </div>
           )}

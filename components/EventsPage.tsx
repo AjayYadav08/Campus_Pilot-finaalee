@@ -118,7 +118,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Speedsters",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 987-6543", email: "flash@artemis.events" }
+    organizerContact: { phone: "+1 (555) 987-6543", email: "flash@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "2 Hours",
+    format: {
+      rounds: ["Problem Reveal", "Coding Sprint", "Evaluation"],
+      type: 'Online',
+      mode: 'Solo'
+    },
+    dos: ["Prepare your environment", "Check your internet", "Focus on efficiency"],
+    donts: ["No external help", "No code sharing during the sprint"],
+    rules: [
+      "Individual participation only.",
+      "Solutions must be submitted within the time limit.",
+      "Plagiarism check will be performed on all submissions."
+    ]
   },
   {
     id: 'e_mumbai',
@@ -152,6 +167,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
       "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=1000",
       "https://images.unsplash.com/photo-1614064641913-6b17fda71221?auto=format&fit=crop&q=80&w=1000",
       "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1000"
+    ],
+    isPaid: true,
+    registrationFee: "₹499",
+    duration: "10 Hours",
+    format: {
+      rounds: ["Intro & Networking", "Technical Workshop", "Panel Discussion"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Bring your ID card", "Network actively", "Ask questions during Q&A"],
+    donts: ["No recording during panel sessions", "No outside food inside the auditorium"],
+    rules: [
+      "ID card mandatory for entry.",
+      "Registration non-refundable.",
+      "Follow campus code of conduct."
     ]
   },
   {
@@ -220,7 +250,17 @@ export const EVENTS_MOCK: CampusEvent[] = [
       "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=1000",
       "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
       "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1000"
-    ]
+    ],
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "48 Hours",
+    format: {
+      rounds: ["Ideation & Pitching", "48H Hacking", "Final Demo & Judging"],
+      type: 'Hybrid',
+      mode: 'Team'
+    },
+    dos: ["Write original code", "Collaborate with mentors", "Focus on impact"],
+    donts: ["No plagiarism", "No harassment", "Don't ignore the problem statement"],
   },
   {
     id: 'e_cyber',
@@ -244,7 +284,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Advanced Cybersecurity Students",
     teamSize: "Individual Only",
     certification: false,
-    organizerContact: { phone: "+1 (555) 555-7890", email: "security@artemis.events" }
+    organizerContact: { phone: "+1 (555) 555-7890", email: "security@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "4 Hours",
+    format: {
+      rounds: ["Reconnaissance", "Exploitation", "Capture the Flag"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Bring your own laptop", "Charge your devices", "Follow ethical guidelines"],
+    donts: ["No attacking the infrastructure", "No collusion with other participants"],
+    rules: [
+      "CTF format with hidden flags in vulnerable services.",
+      "Points awarded based on difficulty of flags.",
+      "Final ranking determined by total points and submission time."
+    ]
   },
   {
     id: 'e2',
@@ -267,7 +322,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Beginners to Design",
     teamSize: "No Limit",
     certification: true,
-    organizerContact: { phone: "+1 (555) 111-2222", email: "design@artemis.events" }
+    organizerContact: { phone: "+1 (555) 111-2222", email: "design@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹199",
+    duration: "3 Hours",
+    format: {
+      rounds: ["Intro to Design Systems", "Hands-on Figma Session", "Project Showcase"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Install Figma beforehand", "Bring a mouse for better control", "Ask questions during the demo"],
+    donts: ["No distracting others", "No sharing workshop assets externally"],
+    rules: [
+      "Workshop-only participation.",
+      "Certificate provided upon completion of the hands-on project.",
+      "Assets provided are for educational use only."
+    ]
   },
   {
     id: 'e_fintech',
@@ -294,7 +364,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Quant Enthusiasts",
     teamSize: "1-3 Members",
     certification: true,
-    organizerContact: { phone: "+1 (555) 333-4444", email: "fintech@artemis.events" }
+    organizerContact: { phone: "+1 (555) 333-4444", email: "fintech@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹299",
+    duration: "8 Hours",
+    format: {
+      rounds: ["Strategy Building", "Algorithm Deployment", "Market Simulation"],
+      type: 'Online',
+      mode: 'Team'
+    },
+    dos: ["Test your algorithms", "Monitor your bot performance", "Use robust error handling"],
+    donts: ["No manual trades during simulation", "No exploiting API vulnerabilities"],
+    rules: [
+      "Trading bots must operate autonomously.",
+      "Performance measured by risk-adjusted returns.",
+      "Algorithms must adhere to the provided rate limits."
+    ]
   },
   {
     id: 'e_robowars',
@@ -325,6 +410,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     gallery: [
       "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1000",
       "https://images.unsplash.com/photo-1524143986875-3b098d78b363?auto=format&fit=crop&q=80&w=1000"
+    ],
+    isPaid: true,
+    registrationFee: "₹1,499 per team",
+    duration: "2 Days",
+    format: {
+      rounds: ["Pit Strategy", "Heat Rounds", "Grand Finals"],
+      type: 'Offline',
+      mode: 'Team'
+    },
+    dos: ["Wear safety gear at all times", "Follow referee instructions", "Bring spare parts"],
+    donts: ["No unsportsmanlike behavior", "No modifications after weigh-in"],
+    rules: [
+      "Bots must meet weight and size specifications.",
+      "No flammable or explosive weapons allowed.",
+      "Matches last 3 minutes or until knockout."
     ]
   },
   {
@@ -348,7 +448,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "CS Students",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 555-6666", email: "rust@artemis.events" }
+    organizerContact: { phone: "+1 (555) 555-6666", email: "rust@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "4 Hours",
+    format: {
+      rounds: ["Intro to Rust", "Ownership & Borrowing", "Concurrency Project"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Install Rust toolchain", "Bring your laptop", "Follow along with the demo"],
+    donts: ["No disruptive behavior", "No skipping the hands-on session"],
+    rules: [
+      "Participants must attend all sessions to receive certification.",
+      "Follow-up exercises provided after the workshop."
+    ]
   },
   {
     id: 'e_music',
@@ -371,7 +485,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Open for All",
     teamSize: "N/A",
     certification: false,
-    organizerContact: { phone: "+1 (555) 666-7777", email: "cultural@artemis.events" }
+    organizerContact: { phone: "+1 (555) 666-7777", email: "cultural@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "6 Hours",
+    format: {
+      rounds: ["Opening Act", "Main Performances", "Open Mic"],
+      type: 'Offline',
+      mode: 'Both'
+    },
+    dos: ["Respect the performers", "Enjoy the music", "Network with fellow artists"],
+    donts: ["No loud talking during performances", "No unauthorized recordings"],
+    rules: [
+      "Performances must adhere to the time limit.",
+      "Bring your own instruments if performing.",
+      "Clean up after yourself."
+    ]
   },
   {
     id: 'e_gamejam',
@@ -395,7 +524,22 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Game Devs",
     teamSize: "1-4 Members",
     certification: true,
-    organizerContact: { phone: "+1 (555) 777-8888", email: "gamedev@artemis.events" }
+    organizerContact: { phone: "+1 (555) 777-8888", email: "gamedev@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹499",
+    duration: "48 Hours",
+    format: {
+      rounds: ["Concept Reveal", "Game Development", "Peer Review"],
+      type: 'Offline',
+      mode: 'Team'
+    },
+    dos: ["Bring your dev setup", "Stick to the theme", "Collaborate with artists"],
+    donts: ["No pre-made game engines from scratch", "No using external assets without license"],
+    rules: [
+      "All game logic must be written during the jam.",
+      "Final game must be playable on standard hardware.",
+      "Source code must be submitted for review."
+    ]
   },
   {
     id: 'e_blockchain',
@@ -418,7 +562,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Open for All",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 888-9999", email: "web3@artemis.events" }
+    organizerContact: { phone: "+1 (555) 888-9999", email: "web3@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "4 Hours",
+    format: {
+      rounds: ["Foundations of Web3", "DeFi Deep Dive", "Future Roadmap"],
+      type: 'Hybrid',
+      mode: 'Solo'
+    },
+    dos: ["Follow DeFi trends", "Engage with speakers", "Take notes on protocol updates"],
+    donts: ["No disruptive behavior during the seminar", "No recording without permission"],
+    rules: [
+      "Seminar attendance is mandatory for certification.",
+      "Submit feedback form at the end."
+    ]
   },
   {
     id: 'e_startup',
@@ -442,7 +600,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Student Founders",
     teamSize: "1-5 Members",
     certification: false,
-    organizerContact: { phone: "+1 (555) 999-0000", email: "startup@artemis.events" }
+    organizerContact: { phone: "+1 (555) 999-0000", email: "startup@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "5 Hours",
+    format: {
+      rounds: ["Elevator Pitch", "Detailed Business Plan", "VC Feedback"],
+      type: 'Offline',
+      mode: 'Team'
+    },
+    dos: ["Prepare a clear pitch deck", "Be ready for tough questions", "Network with mentors"],
+    donts: ["No exceeding the time limit", "No unprofessional behavior"],
+    rules: [
+      "Pitch deck must be submitted 24 hours in advance.",
+      "At least one founder must be present."
+    ]
   },
   {
     id: 'e_design',
@@ -466,7 +638,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Designers",
     teamSize: "2-3 Members",
     certification: true,
-    organizerContact: { phone: "+1 (555) 001-1111", email: "design.sprint@artemis.events" }
+    organizerContact: { phone: "+1 (555) 001-1111", email: "design.sprint@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹399",
+    duration: "8 Hours",
+    format: {
+      rounds: ["UX Problem Brief", "Prototyping Session", "Final Presentation"],
+      type: 'Offline',
+      mode: 'Team'
+    },
+    dos: ["Focus on user needs", "Use clean UI patterns", "Iterate quickly"],
+    donts: ["No ignoring accessibility standards", "No finishing early without testing"],
+    rules: [
+      "Final prototype must be interactive.",
+      "Design process documentation is mandatory."
+    ]
   },
   {
     id: 'e_datascience',
@@ -489,7 +675,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Data Enthusiasts",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 222-3333", email: "data@artemis.events" }
+    organizerContact: { phone: "+1 (555) 222-3333", email: "data@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹199",
+    duration: "4 Hours",
+    format: {
+      rounds: ["Intro to Kaggle", "Feature Engineering", "Model Competition"],
+      type: 'Online',
+      mode: 'Solo'
+    },
+    dos: ["Optimize your model", "Document your code", "Use clean visualizations"],
+    donts: ["No private data sharing", "No manual label editing"],
+    rules: [
+      "Final model must be submitted as a notebook.",
+      "Accuracy must be reproducible."
+    ]
   },
   {
     id: 'e_drone',
@@ -513,7 +713,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "Licensed Pilots",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 444-6666", email: "drone@artemis.events" }
+    organizerContact: { phone: "+1 (555) 444-6666", email: "drone@artemis.events" },
+    isPaid: true,
+    registrationFee: "₹1,200",
+    duration: "6 Hours",
+    format: {
+      rounds: ["Technical Inspection", "Time Trials", "Circuit Race"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Bring extra batteries", "Check your FPV signal", "Follow the course markers"],
+    donts: ["No flying outside the course", "No dangerous maneuvers"],
+    rules: [
+      "Drones must meet the safety inspection.",
+      "Race points awarded for lap time and gates cleared."
+    ]
   },
   {
     id: 'e_cloud',
@@ -537,7 +751,21 @@ export const EVENTS_MOCK: CampusEvent[] = [
     eligibility: "CS Students",
     teamSize: "Individual",
     certification: true,
-    organizerContact: { phone: "+1 (555) 555-7777", email: "cloud@artemis.events" }
+    organizerContact: { phone: "+1 (555) 555-7777", email: "cloud@artemis.events" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "4 Hours",
+    format: {
+      rounds: ["RL Fundamentals", "DeepRacer Training", "Live Race"],
+      type: 'Offline',
+      mode: 'Solo'
+    },
+    dos: ["Focus on reward functions", "Monitor training progress", "Ask AWS experts for help"],
+    donts: ["No manual intervention during racing", "No using pre-trained public models"],
+    rules: [
+      "Participants must use the provided AWS environment.",
+      "Top racers win AWS credits."
+    ]
   }
 ];
 

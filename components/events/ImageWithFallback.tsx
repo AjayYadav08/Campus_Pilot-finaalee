@@ -6,9 +6,10 @@ interface ImageWithFallbackProps {
   alt: string;
   className?: string;
   fallbackSrc?: string;
+  loading?: "lazy" | "eager";
 }
 
-const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, className, fallbackSrc }) => {
+const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, className, fallbackSrc, loading = "lazy" }) => {
   const [error, setError] = useState(false);
   const defaultFallback = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop";
 
@@ -27,7 +28,7 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ src, alt, classNa
       src={src} 
       alt={alt} 
       className={className} 
-      loading="lazy"
+      loading={loading}
       onError={() => setError(true)}
     />
   );

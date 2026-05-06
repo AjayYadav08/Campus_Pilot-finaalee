@@ -64,6 +64,16 @@ export interface CampusEvent {
     email: string;
   };
   gallery?: string[];
+  isPaid?: boolean;
+  registrationFee?: string;
+  duration?: string;
+  format?: {
+    rounds: string[];
+    type: 'Online' | 'Offline' | 'Hybrid';
+    mode: 'Team' | 'Solo' | 'Both';
+  };
+  dos?: string[];
+  donts?: string[];
 }
 
 export interface TeamMember {
