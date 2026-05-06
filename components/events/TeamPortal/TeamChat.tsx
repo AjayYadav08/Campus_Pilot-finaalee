@@ -47,6 +47,7 @@ const TeamChat: React.FC<TeamChatProps> = ({
       <div className="p-4 border-t border-slate-100 bg-white shrink-0">
         <div className="flex items-center gap-3">
           <input
+            id="tour-team-chat"
             type="text"
             placeholder="Type a message..."
             className="flex-1 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-3.5 text-base font-medium outline-none focus:border-indigo-300 focus:ring-4 focus:ring-indigo-50 transition-all"

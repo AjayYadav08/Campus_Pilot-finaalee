@@ -24,22 +24,22 @@ const SharedModals: React.FC<SharedModalsProps> = ({
   return (
     <>
       {showConfirmModal && exploringEvent && (
-        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm  ">
-          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-100 scale-100  -95 duration-200">
+        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-100 animate-in zoom-in-95 fade-in duration-300 slide-in-from-bottom-4">
              <h3 className="text-xl font-black text-slate-900 mb-2">Confirm Registration</h3>
              <p className="text-slate-500 text-sm mb-8 leading-relaxed">
-               Are you sure you want to register for <span className="font-bold text-slate-800">{exploringEvent.title}</span>? This will secure your spot.
+               Are you sure you want to register for <span className="font-bold text-slate-800">{exploringEvent.title}</span>? This will secure your spot and notify the organizers.
              </p>
              <div className="flex gap-3">
                 <button 
                   onClick={() => setShowConfirmModal(false)}
-                  className="flex-1 py-3 text-slate-600 font-bold text-sm bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+                  className="flex-1 py-3 text-slate-600 font-bold text-sm bg-slate-100 hover:bg-slate-200 rounded-xl transition-all active:scale-95"
                 >
                   Cancel
                 </button>
                 <button 
                   onClick={confirmRegistration}
-                  className="flex-1 py-3 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors shadow-lg shadow-blue-200"
+                  className="flex-1 py-3 text-white font-bold text-sm bg-blue-600 hover:bg-blue-700 rounded-xl transition-all shadow-lg shadow-blue-200 active:scale-95"
                 >
                   Confirm
                 </button>
@@ -49,19 +49,19 @@ const SharedModals: React.FC<SharedModalsProps> = ({
       )}
       
       {showSuccessModal && (
-        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm  ">
-          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-100 scale-100  -95 duration-200 text-center">
-             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-100 animate-in zoom-in-95 fade-in duration-300 slide-in-from-bottom-4 text-center">
+             <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
                 <Check className="w-8 h-8" />
              </div>
-             <h3 className="text-2xl font-black text-slate-900 mb-2">You registered!</h3>
+             <h3 className="text-2xl font-black text-slate-900 mb-2">Registration completed successfully</h3>
              <p className="text-slate-500 text-sm mb-8 leading-relaxed">
                You are now officially part of the event. Get ready to compete and learn!
              </p>
              <div className="flex flex-col gap-3">
                 <button 
                   onClick={() => { setShowSuccessModal(false); setShowPeersModal(true); }}
-                  className="w-full py-4 text-white font-bold text-sm bg-slate-900 hover:bg-black rounded-xl transition-colors shadow-lg shadow-slate-200 flex items-center justify-center gap-2"
+                  className="w-full py-4 text-white font-bold text-sm bg-slate-900 hover:bg-black rounded-xl transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2 active:scale-95"
                 >
                   <UserPlus className="w-4 h-4" /> Ask Peers to Join
                 </button>
@@ -77,8 +77,8 @@ const SharedModals: React.FC<SharedModalsProps> = ({
       )}
 
       {showPeersModal && exploringEvent && (
-        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm  ">
-          <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-100 scale-100  -95 duration-200 flex flex-col max-h-[80vh]">
+        <div className="fixed inset-0 z-[2100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-100 animate-in zoom-in-95 fade-in duration-300 slide-in-from-bottom-4 flex flex-col max-h-[80vh]">
              <div className="flex justify-between items-center mb-6">
                 <h3 className="text-xl font-black text-slate-900">Invite Peers</h3>
                 <button onClick={() => setShowPeersModal(false)} className="p-2 bg-slate-50 rounded-full hover:bg-slate-100 text-slate-500">

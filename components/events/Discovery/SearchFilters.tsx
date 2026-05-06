@@ -42,7 +42,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
            </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2" id="tour-filter">
           {['All', 'Competition', 'Workshop', 'Fest', 'Seminar'].map(cat => (
             <button
               key={cat}

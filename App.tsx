@@ -10,6 +10,10 @@ import { MiniFloatingCalendar } from './components/MiniFloatingCalendar';
 import { LoginPage } from './components/LoginPage';
 import { MessageSquareWarning, Ghost, ArrowRight, X, Radio, BellRing, Layout } from 'lucide-react';
 
+import { TutorialProvider, useTutorial } from './components/tutorial/TutorialContext';
+import { TutorialOverlay } from './components/TutorialOverlay';
+import { ErrorBoundary } from './components/ErrorBoundary';
+
 // Helper to strictly parse event dates for comparison
 const parseEventDate = (dateStr: string) => {
   // Expected format: "DD Mon YYYY" e.g. "15 Feb 2026"
@@ -36,11 +40,15 @@ interface ToastItem {
   isExiting: boolean;
 }
 
-const App: React.FC = () => {
+const MainApp: React.FC = () => {
+  const { activeFlow, startFlow, advanceStep, currentStepIndex } = useTutorial();
   const [activeTab, setActiveTab] = useState('Home');
   const [isMiniCalendarOpen, setIsMiniCalendarOpen] = useState(false);
   const [selectedGlobalDate, setSelectedGlobalDate] = useState<number | null>(null);
   const [exploringEventId, setExploringEventId] = useState<string | null>(null);
+
+  // Removed auto-trigger from Home tab to avoid showing tutorial on Dashboard
+  // Tutorial will now start specifically when entering the Events Arena after the loader.
   
   // Transition State for Events Tab
   const [showEventsSplash, setShowEventsSplash] = useState(false);
@@ -84,6 +92,11 @@ const App: React.FC = () => {
   }, [viewedEventIds]);
 
   const handleTabChange = (tab: string) => {
+    // Tutorial progression check
+    if (activeFlow === 'homepage' && currentStepIndex === 3 && tab === 'Events') {
+       advanceStep();
+    }
+
     if (tab === 'Events' && activeTab !== 'Events') {
       // Trigger the Splash Screen Transition for Events
       setShowEventsSplash(true);
@@ -95,6 +108,11 @@ const App: React.FC = () => {
   const handleSplashComplete = () => {
     setShowEventsSplash(false);
     setActiveTab('Events');
+    
+    // Start the homepage/onboarding tutorial after a short delay for smooth UX
+    setTimeout(() => {
+      startFlow('homepage');
+    }, 800); 
   };
 
   const handleEventView = (id: string) => {
@@ -214,12 +232,16 @@ const App: React.FC = () => {
   const markNotInterested = (id: string) => {
     setNotInterestedIds(prev => {
        const next = new Set(prev);
-       next.add(id);
-       setInterestedIds(old => {
-          const updated = new Set(old);
-          updated.delete(id);
-          return updated;
-       });
+       if (next.has(id)) {
+          next.delete(id);
+       } else {
+          next.add(id);
+          setInterestedIds(old => {
+             const updated = new Set(old);
+             updated.delete(id);
+             return updated;
+          });
+       }
        return next;
     });
     // Instant removal for this context is fine
@@ -338,7 +360,7 @@ const App: React.FC = () => {
         setToasts(prev => prev.filter(t => t.id !== id));
       }, 6300);
 
-    }, 40000); // SLOWED DOWN: 40 Seconds Interval
+    }, 160000); // SLOWED DOWN: 160 Seconds Interval (increased by 120s)
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -527,7 +549,7 @@ const App: React.FC = () => {
         )}
         
         <div className="flex flex-1 overflow-hidden">
-          <main className="flex-1 min-w-0 bg-[#f8fafc]/50 relative overflow-y-auto">
+          <main className="flex-1 min-w-0 bg-[#f8fafc]/50 relative overflow-hidden">
             {renderContent()}
           </main>
           
@@ -540,8 +562,22 @@ const App: React.FC = () => {
         setIsOpen={setIsMiniCalendarOpen}
         selectedDate={selectedGlobalDate}
         setSelectedDate={setSelectedGlobalDate}
+        events={EVENTS_MOCK}
+        interestedIds={interestedIds}
+        registeredIds={registeredIds}
       />
+      <TutorialOverlay />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ErrorBoundary>
+      <TutorialProvider>
+        <MainApp />
+      </TutorialProvider>
+    </ErrorBoundary>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, Rocket, UserPlus } from 'lucide-react';
 import { Team } from './types';
+import { useTutorial } from '../tutorial/TutorialContext';
 
 interface EventsHeaderProps {
   showTeamsView: boolean;
@@ -25,12 +26,21 @@ const EventsHeader: React.FC<EventsHeaderProps> = ({
   showCreateTeamForm,
   showJoinTeamView
 }) => {
+  const { activeFlow, currentStepIndex, advanceStep, resetAllFlows } = useTutorial();
+
   return (
     <div className="px-8 pt-10 flex items-center justify-between mb-8">
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-          <span className="text-[18px] font-black text-white">⚡</span>
-        </div>
+        <button 
+          onClick={resetAllFlows}
+          className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all group relative"
+          title="Replay Onboarding Tutorial"
+        >
+          <span className="text-[18px] font-black text-white group-hover:rotate-12 transition-transform">⚡</span>
+          <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity">
+            <Rocket className="w-3 h-3 text-blue-600" />
+          </div>
+        </button>
         <div>
           <h1 className="text-4xl font-black text-slate-900">Event Artemis</h1>
           <p className="text-sm text-slate-500 font-bold uppercase tracking-widest">Discover & Participate</p>
@@ -40,12 +50,17 @@ const EventsHeader: React.FC<EventsHeaderProps> = ({
       <div className="flex items-center gap-3">
         {/* YOUR TEAMS BUTTON */}
         <button
+          id="tour-teams-tab"
           onClick={() => { 
             setShowTeamsView(!showTeamsView); 
             setActiveTeam(null); 
             setShowTeamMembers(false); 
             setShowCreateTeamForm(false); 
-            setShowJoinTeamView(false); 
+            setShowJoinTeamView(false);
+            
+            if (activeFlow === 'homepage' && currentStepIndex === 3) {
+              advanceStep();
+            }
           }}
           className={`flex items-center gap-3 px-6 py-3.5 rounded-2xl text-sm font-black uppercase tracking-[0.2em] transition-all border-2 shadow-sm ${
             showTeamsView
@@ -62,6 +77,7 @@ const EventsHeader: React.FC<EventsHeaderProps> = ({
         {showTeamsView && (
           <div className="flex items-center gap-2  slide-in-from-right-4 ">
             <button
+              id="tour-create-team-btn"
               onClick={() => { setShowCreateTeamForm(true); setShowJoinTeamView(false); setActiveTeam(null); }}
               className={`flex items-center gap-2 px-5 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 showCreateTeamForm 
@@ -73,6 +89,7 @@ const EventsHeader: React.FC<EventsHeaderProps> = ({
               New Team
             </button>
             <button
+              id="tour-team-search"
               onClick={() => { setShowJoinTeamView(true); setShowCreateTeamForm(false); setActiveTeam(null); }}
               className={`flex items-center gap-2 px-5 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border-2 ${
                 showJoinTeamView 

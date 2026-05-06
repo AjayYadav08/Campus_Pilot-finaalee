@@ -35,7 +35,7 @@ export interface CampusEvent {
   id: string;
   title: string;
   category: 'Competition' | 'Fest' | 'Workshop' | 'Seminar';
-  type: 'Live' | 'Upcoming' | 'Closed';
+  type: 'Live' | 'Upcoming' | 'Closed' | 'Past';
   date: string;
   dayOfMonth: number;
   time: string;

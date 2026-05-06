@@ -1,24 +1,60 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Calendar as CalendarIcon, X, ChevronLeft, ChevronRight, Sparkles, Bot, Maximize2 } from 'lucide-react';
+import { CampusEvent } from './events/types';
 
 interface MiniFloatingCalendarProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   selectedDate: number | null;
   setSelectedDate: (date: number | null) => void;
+  events: CampusEvent[];
+  interestedIds: Set<string>;
+  registeredIds: Set<string>;
 }
 
 export const MiniFloatingCalendar: React.FC<MiniFloatingCalendarProps> = ({ 
   isOpen, 
   setIsOpen, 
   selectedDate, 
-  setSelectedDate 
+  setSelectedDate,
+  events,
+  interestedIds,
+  registeredIds
 }) => {
   const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const currentMonthDays = Array.from({ length: 31 }, (_, i) => i + 1);
-  const startOffset = 3; // Mocking January 2026 starts on Thursday (index 4) - simplified offset
+  const startOffset = 5; // May 2026 starts on Friday
   const [robotMessage, setRobotMessage] = useState("Planning? You? That's hilarious!");
+
+  const eventDates = useMemo(() => {
+    const dates = new Set<number>();
+    events.forEach(e => {
+      if (e.date.includes('May 2026')) {
+        dates.add(e.dayOfMonth);
+      }
+    });
+    return dates;
+  }, [events]);
+
+  const registeredDates = useMemo(() => {
+    const dates = new Set<number>();
+    events.forEach(e => {
+      if (e.date.includes('May 2026') && registeredIds.has(e.id)) {
+        dates.add(e.dayOfMonth);
+      }
+    });
+    return dates;
+  }, [events, registeredIds]);
+
+  const interestedDates = useMemo(() => {
+    const dates = new Set<number>();
+    events.forEach(e => {
+      if (e.date.includes('May 2026') && interestedIds.has(e.id) && !registeredIds.has(e.id)) {
+        dates.add(e.dayOfMonth);
+      }
+    });
+    return dates;
+  }, [events, interestedIds, registeredIds]);
 
   const mockingMessages = [
     "Trying to organize your chaos? Cute.",
@@ -57,7 +93,7 @@ export const MiniFloatingCalendar: React.FC<MiniFloatingCalendarProps> = ({
           <div className="flex items-start justify-between mb-6">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                 <h4 className="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 shadow-sm">January 2026</h4>
+                 <h4 className="text-[10px] font-black text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 shadow-sm">May 2026</h4>
               </div>
               <p className="text-xs font-bold text-slate-800 mt-1 flex items-center gap-1">
                  Selection Mode <span className="text-base animate-pulse">⚡️</span>
@@ -90,29 +126,49 @@ export const MiniFloatingCalendar: React.FC<MiniFloatingCalendarProps> = ({
             ))}
           </div>
 
-          <div className="grid gap-1.5 mb-6 flex-1 overflow-y-auto grid-cols-7">
+          <div className="grid gap-1.5 mb-6 flex-1 overflow-y-auto grid-cols-7" id="tour-mini-calendar">
             {Array.from({ length: startOffset }).map((_, i) => (
               <div key={`off-${i}`} className="h-9" />
             ))}
-            {currentMonthDays.map(day => {
-              const isActive = selectedDate === day;
-              return (
-                <button
-                  key={day}
-                  onClick={() => setSelectedDate(isActive ? null : day)}
-                  className={`flex items-center justify-center rounded-xl text-[11px] font-bold transition-all relative group h-9 ${
-                    isActive 
-                      ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/40 scale-110 z-10 ring-2 ring-white' 
-                      : 'text-slate-600 hover:bg-blue-50 hover:text-blue-600 hover:scale-110 hover:shadow-sm hover:z-10'
-                  }`}
-                >
-                  {day}
-                  {day === 19 && !isActive && (
-                     <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-rose-500 rounded-full ring-2 ring-white" />
-                  )}
-                </button>
-              );
-            })}
+            {(() => {
+              let eventDotAssigned = false;
+              let interestedAssigned = false;
+              let registeredAssigned = false;
+
+              return currentMonthDays.map(day => {
+                const isActive = selectedDate === day;
+                const hasEvent = eventDates.has(day);
+                const isRegistered = registeredDates.has(day);
+                const isInterested = interestedDates.has(day);
+
+                let btnId = undefined;
+                if (hasEvent && !eventDotAssigned) { btnId = 'tour-cal-event-dot'; eventDotAssigned = true; }
+                else if (isRegistered && !registeredAssigned) { btnId = 'tour-cal-registered'; registeredAssigned = true; }
+                else if (isInterested && !interestedAssigned) { btnId = 'tour-cal-interested'; interestedAssigned = true; }
+
+                return (
+                  <button
+                    key={day}
+                    id={btnId}
+                    onClick={() => setSelectedDate(isActive ? null : day)}
+                    className={`flex items-center justify-center rounded-xl text-[11px] font-bold transition-all relative group h-9 ${
+                      isActive 
+                        ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/40 scale-110 z-10 ring-2 ring-white' 
+                        : isRegistered
+                          ? 'bg-emerald-100 text-emerald-800 ring-2 ring-emerald-500 shadow-sm'
+                          : isInterested
+                            ? 'text-emerald-600 ring-2 ring-emerald-500 ring-offset-1'
+                            : 'text-slate-600 hover:bg-blue-50 hover:text-blue-600 hover:scale-110 hover:shadow-sm hover:z-10'
+                    }`}
+                  >
+                    {day}
+                    {hasEvent && (
+                       <div className={`absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full ${isActive ? 'bg-white' : 'bg-rose-500 animate-pulse'}`} />
+                    )}
+                  </button>
+                );
+              });
+            })()}
           </div>
 
           <div className="flex gap-3 mt-auto">

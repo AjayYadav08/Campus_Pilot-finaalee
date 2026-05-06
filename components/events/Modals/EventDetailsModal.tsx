@@ -9,6 +9,8 @@ import {
 import { CampusEvent } from '../types';
 import ImageWithFallback from '../ImageWithFallback';
 
+import { useTutorial } from '../../tutorial/TutorialContext';
+
 interface EventDetailsModalProps {
   exploringEvent: CampusEvent;
   closeExplorer: () => void;
@@ -34,16 +36,33 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
   isNotInterested,
   markNotInterested
 }) => {
+  const { startFlow } = useTutorial();
+
+  React.useEffect(() => {
+    startFlow('event_details');
+  }, [startFlow]);
+
   return createPortal(
-    <div className="fixed inset-0 z-[9999] bg-white overflow-y-auto font-sans">
+    <div className="fixed inset-0 z-[9999] bg-white overflow-y-auto font-sans animate-modal-in" id="tour-event-overview">
+       
+       <style dangerouslySetInnerHTML={{ __html: `
+         @keyframes modalIn {
+           from { opacity: 0; transform: scale(0.98); }
+           to { opacity: 1; transform: scale(1); }
+         }
+         .animate-modal-in {
+           animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+         }
+       `}} />
        
        <button 
-          onClick={closeExplorer} 
-          className="fixed top-6 right-6 z-[10000] w-12 h-12 flex items-center justify-center rounded-full bg-black/10 backdrop-blur-xl border border-white/10 text-white shadow-2xl transition-all  hover:bg-rose-500 hover:border-rose-500 hover:scale-110 active:scale-90 group"
-          title="Close Details"
-       >
-          <X className="w-5 h-5 stroke-[3px] group-hover:rotate-90 transition-transform " />
-       </button>
+           id="modal-close-button"
+           onClick={(e) => { e.stopPropagation(); closeExplorer(); }} 
+           className="fixed top-6 right-6 z-[11000] w-12 h-12 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-xl border border-white/20 text-white shadow-2xl transition-all hover:bg-rose-500 hover:border-rose-500 hover:scale-110 active:scale-90 group"
+           title="Close Details (Esc)"
+        >
+           <X className="w-5 h-5 stroke-[3px] group-hover:rotate-90 transition-transform " />
+        </button>
 
        <div className="w-full h-[50vh] relative bg-slate-900">
           <ImageWithFallback 
@@ -95,6 +114,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 
              <div className="flex flex-col sm:flex-row gap-4 mb-8 p-3 bg-slate-50/50 rounded-2xl border border-slate-100">
                  <button 
+                   id="tour-event-register"
                    onClick={isExploringEventPast ? undefined : (isRegistered ? () => setShowPeersModal(true) : onRegisterClick)}
                    disabled={isExploringEventPast}
                    className={`flex-1 py-4 px-8 rounded-xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-lg flex items-center justify-center gap-3 ${
@@ -272,7 +292,7 @@ const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                          <h3 className="text-xs font-black text-slate-900 uppercase tracking-[0.2em] flex items-center gap-2">
                             <Shield className="w-4 h-4 text-slate-900" /> Rules & Guidelines
                          </h3>
-                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6" id="tour-event-essentials">
                             {exploringEvent.dos && (
                               <div className="bg-emerald-50/50 rounded-[32px] p-8 border border-emerald-100">
                                  <h4 className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-6 flex items-center gap-2">

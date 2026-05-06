@@ -58,7 +58,7 @@ import {
   Camera,
   MessageCircle
 } from 'lucide-react';
-import { TutorialOverlay, TutorialStep } from './TutorialOverlay';
+import { useTutorial } from './tutorial/TutorialContext';
 
 import { 
   CampusEvent, Team, TeamMember, ChatMessage, JoinRequest,
@@ -136,11 +136,104 @@ export const EVENTS_MOCK: CampusEvent[] = [
     ]
   },
   {
+    id: 'e_closing_soon_1',
+    title: 'AI Ethics Debate',
+    category: 'Seminar',
+    type: 'Upcoming',
+    date: '8 May 2026',
+    dayOfMonth: 8,
+    time: '02:00 PM',
+    location: 'Main Hall',
+    xp: 1200,
+    attendees: 150,
+    sectionParticipants: 10,
+    prizePool: "₹10,000",
+    tracks: ["Ethics", "AI Policy"],
+    posterUrl: "https://images.unsplash.com/photo-1591115765373-520b7a6f7104?auto=format&fit=crop&q=80&w=1000",
+    description: "Discussing the philosophical and legal implications of autonomous agents.",
+    jokes: ["My AI told me it has no comment on this debate."],
+    timeline: [{ time: "02:00 PM", title: "Opening", desc: "Intro to AI Ethics." }],
+    venueDetails: "Main Hall, Level 2.",
+    eligibility: "All Students",
+    teamSize: "1-2 Members",
+    certification: true,
+    organizerContact: { phone: "+91 98765 43210", email: "ethics@campus.edu" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "3 Hours",
+    format: { rounds: ["Opening", "Debate", "Conclusion"], type: 'Offline', mode: 'Both' },
+    dos: ["Research beforehand", "Be respectful"],
+    donts: ["No AI-generated arguments"],
+    rules: ["Standard debate rules apply."]
+  },
+  {
+    id: 'e_upcoming_1',
+    title: 'Web3 Hackathon 2026',
+    category: 'Competition',
+    type: 'Upcoming',
+    date: '20 May 2026',
+    dayOfMonth: 20,
+    time: '10:00 AM',
+    location: 'Crypto Lab',
+    xp: 3000,
+    attendees: 300,
+    sectionParticipants: 25,
+    prizePool: "₹2,00,000",
+    tracks: ["DeFi", "NFTs", "DAOs"],
+    posterUrl: "https://images.unsplash.com/photo-1639762681485-074b7f4ecb3c?auto=format&fit=crop&q=80&w=1000",
+    description: "Build the future of decentralized finance.",
+    jokes: ["WAGMI, but only if you ship."],
+    timeline: [{ time: "10:00 AM", title: "Kickoff", desc: "Rules and API keys." }],
+    venueDetails: "Block C, 3rd Floor.",
+    eligibility: "Developers",
+    teamSize: "1-4 Members",
+    certification: true,
+    organizerContact: { phone: "+91 88888 77777", email: "web3@campus.edu" },
+    isPaid: true,
+    registrationFee: "₹499",
+    duration: "48 Hours",
+    format: { rounds: ["Intro", "Hacking", "Demo"], type: 'Hybrid', mode: 'Team' },
+    dos: ["Write clean code", "Use provided APIs"],
+    donts: ["No pre-built projects"],
+    rules: ["24-hour hacking window."]
+  },
+  {
+    id: 'e_past_1',
+    title: 'Design Sprint: Spring 2026',
+    category: 'Workshop',
+    type: 'Past',
+    date: '2 May 2026',
+    dayOfMonth: 2,
+    time: '11:00 AM',
+    location: 'Design Studio',
+    xp: 800,
+    attendees: 80,
+    sectionParticipants: 12,
+    prizePool: "Wacom Tablet",
+    tracks: ["UX", "UI"],
+    posterUrl: "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&q=80&w=1000",
+    description: "A fast-paced product design challenge.",
+    jokes: ["Making the logo bigger since 2020."],
+    timeline: [{ time: "11:00 AM", title: "Review", desc: "Final designs showcase." }],
+    venueDetails: "Art Block, Room 101.",
+    eligibility: "Designers",
+    teamSize: "1-3 Members",
+    certification: true,
+    organizerContact: { phone: "+91 77777 66666", email: "design@campus.edu" },
+    isPaid: false,
+    registrationFee: "Free",
+    duration: "6 Hours",
+    format: { rounds: ["Research", "Design", "Feedback"], type: 'Offline', mode: 'Solo' },
+    dos: ["Focus on accessibility"],
+    donts: ["Don't skip the wireframe"],
+    rules: ["Use Figma or Adobe XD."]
+  },
+  {
     id: 'e_mumbai',
     title: 'Mumbai Developer Summit 2026',
     category: 'Competition',
     type: 'Upcoming',
-    date: '15 Feb 2026',
+    date: '15 May 2026',
     dayOfMonth: 15,
     time: '09:00 AM',
     location: 'IIT Bombay Campus',
@@ -189,7 +282,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     title: 'Global AI Hackathon 2026',
     category: 'Competition',
     type: 'Live',
-    date: '24 Jan 2026',
+    date: '24 May 2026',
     dayOfMonth: 24,
     time: '48H Non-stop',
     location: 'Innovation Wing',
@@ -266,9 +359,9 @@ export const EVENTS_MOCK: CampusEvent[] = [
     id: 'e_cyber',
     title: 'Cyber Security Gauntlet',
     category: 'Competition',
-    type: 'Live',
-    date: '21 Jan 2026',
-    dayOfMonth: 21,
+    type: 'Past',
+    date: '30 Apr 2026',
+    dayOfMonth: 30,
     time: '12:00 PM',
     location: 'Secure Lab 7',
     xp: 800,
@@ -306,7 +399,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     title: 'UI Mastery Workshop',
     category: 'Workshop',
     type: 'Upcoming',
-    date: '26 Jan 2026',
+    date: '26 May 2026',
     dayOfMonth: 26,
     time: '10:00 AM',
     location: 'Design Lab B',
@@ -344,7 +437,7 @@ export const EVENTS_MOCK: CampusEvent[] = [
     title: 'Algo-Trading Sprint',
     category: 'Competition',
     type: 'Upcoming',
-    date: '29 Jan 2026',
+    date: '29 May 2026',
     dayOfMonth: 29,
     time: '08:00 AM',
     location: 'Finance Hub',
@@ -386,8 +479,8 @@ export const EVENTS_MOCK: CampusEvent[] = [
     title: 'RoboWars 2026',
     category: 'Competition',
     type: 'Upcoming',
-    date: '02 Feb 2026',
-    dayOfMonth: 2,
+    date: '12 Jun 2026',
+    dayOfMonth: 12,
     time: '10:00 AM',
     location: 'The Arena',
     xp: 3000,
@@ -425,346 +518,6 @@ export const EVENTS_MOCK: CampusEvent[] = [
       "Bots must meet weight and size specifications.",
       "No flammable or explosive weapons allowed.",
       "Matches last 3 minutes or until knockout."
-    ]
-  },
-  {
-    id: 'e_rust_workshop',
-    title: 'Rust for Systems',
-    category: 'Workshop',
-    type: 'Upcoming',
-    date: '30 Jan 2026',
-    dayOfMonth: 30,
-    time: '02:00 PM',
-    location: 'Lab 2',
-    xp: 600,
-    attendees: 50,
-    sectionParticipants: 10,
-    tracks: ["Memory Safety", "Concurrency"],
-    posterUrl: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1000",
-    description: "Ditch C++. Embrace the crab. Learn memory safety without garbage collection.",
-    jokes: ["I'm currently fighting the borrow checker.", "Rewrite it in Rust."],
-    timeline: [{ time: "02:00 PM", title: "Hello World", desc: "Setup cargo." }],
-    venueDetails: "Computer Lab 2.",
-    eligibility: "CS Students",
-    teamSize: "Individual",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 555-6666", email: "rust@artemis.events" },
-    isPaid: false,
-    registrationFee: "Free",
-    duration: "4 Hours",
-    format: {
-      rounds: ["Intro to Rust", "Ownership & Borrowing", "Concurrency Project"],
-      type: 'Offline',
-      mode: 'Solo'
-    },
-    dos: ["Install Rust toolchain", "Bring your laptop", "Follow along with the demo"],
-    donts: ["No disruptive behavior", "No skipping the hands-on session"],
-    rules: [
-      "Participants must attend all sessions to receive certification.",
-      "Follow-up exercises provided after the workshop."
-    ]
-  },
-  {
-    id: 'e_music',
-    title: 'Acoustic Night',
-    category: 'Fest',
-    type: 'Upcoming',
-    date: '14 Feb 2026',
-    dayOfMonth: 14,
-    time: '06:00 PM',
-    location: 'Amphitheatre',
-    xp: 200,
-    attendees: 500,
-    sectionParticipants: 100,
-    tracks: ["Live Music", "Open Mic"],
-    posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1000",
-    description: "Under the stars, music that heals. Bring your instruments or just your ears.",
-    jokes: ["I play the triangle professionally.", "Free food? Count me in."],
-    timeline: [{ time: "06:00 PM", title: "Opening Act", desc: "Local band performance." }],
-    venueDetails: "Open Air Amphitheatre.",
-    eligibility: "Open for All",
-    teamSize: "N/A",
-    certification: false,
-    organizerContact: { phone: "+1 (555) 666-7777", email: "cultural@artemis.events" },
-    isPaid: false,
-    registrationFee: "Free",
-    duration: "6 Hours",
-    format: {
-      rounds: ["Opening Act", "Main Performances", "Open Mic"],
-      type: 'Offline',
-      mode: 'Both'
-    },
-    dos: ["Respect the performers", "Enjoy the music", "Network with fellow artists"],
-    donts: ["No loud talking during performances", "No unauthorized recordings"],
-    rules: [
-      "Performances must adhere to the time limit.",
-      "Bring your own instruments if performing.",
-      "Clean up after yourself."
-    ]
-  },
-  {
-    id: 'e_gamejam',
-    title: 'Indie Game Jam',
-    category: 'Competition',
-    type: 'Upcoming',
-    date: '08 Feb 2026',
-    dayOfMonth: 8,
-    time: '48H Sprint',
-    location: 'Media Lab',
-    xp: 1500,
-    attendees: 120,
-    sectionParticipants: 20,
-    prizePool: "Steam Credits",
-    tracks: ["Pixel Art", "Unity", "Godot"],
-    posterUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
-    description: "Make a game from scratch in 48 hours. Theme revealed at the start. Sleep is optional.",
-    jokes: ["It's not a glitch, it's a feature.", "My physics engine is broken."],
-    timeline: [{ time: "09:00 AM", title: "Theme Reveal", desc: "Start coding." }],
-    venueDetails: "Media Lab, 3rd Floor.",
-    eligibility: "Game Devs",
-    teamSize: "1-4 Members",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 777-8888", email: "gamedev@artemis.events" },
-    isPaid: true,
-    registrationFee: "₹499",
-    duration: "48 Hours",
-    format: {
-      rounds: ["Concept Reveal", "Game Development", "Peer Review"],
-      type: 'Offline',
-      mode: 'Team'
-    },
-    dos: ["Bring your dev setup", "Stick to the theme", "Collaborate with artists"],
-    donts: ["No pre-made game engines from scratch", "No using external assets without license"],
-    rules: [
-      "All game logic must be written during the jam.",
-      "Final game must be playable on standard hardware.",
-      "Source code must be submitted for review."
-    ]
-  },
-  {
-    id: 'e_blockchain',
-    title: 'Web3 & DeFi Summit',
-    category: 'Seminar',
-    type: 'Upcoming',
-    date: '25 Jan 2026',
-    dayOfMonth: 25,
-    time: '11:00 AM',
-    location: 'Auditorium B',
-    xp: 800,
-    attendees: 200,
-    sectionParticipants: 15,
-    tracks: ["Smart Contracts", "DAOs"],
-    posterUrl: "https://images.unsplash.com/photo-1639762681485-074b7f4ecb3c?auto=format&fit=crop&q=80&w=1000",
-    description: "Understanding the future of finance. Beyond the hype of NFTs.",
-    jokes: ["WAGMI", "HODL your questions till the end."],
-    timeline: [{ time: "11:00 AM", title: "Keynote", desc: "Ethereum 2.0 roadmap." }],
-    venueDetails: "Auditorium B.",
-    eligibility: "Open for All",
-    teamSize: "Individual",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 888-9999", email: "web3@artemis.events" },
-    isPaid: false,
-    registrationFee: "Free",
-    duration: "4 Hours",
-    format: {
-      rounds: ["Foundations of Web3", "DeFi Deep Dive", "Future Roadmap"],
-      type: 'Hybrid',
-      mode: 'Solo'
-    },
-    dos: ["Follow DeFi trends", "Engage with speakers", "Take notes on protocol updates"],
-    donts: ["No disruptive behavior during the seminar", "No recording without permission"],
-    rules: [
-      "Seminar attendance is mandatory for certification.",
-      "Submit feedback form at the end."
-    ]
-  },
-  {
-    id: 'e_startup',
-    title: 'Student Founder Pitch',
-    category: 'Competition',
-    type: 'Upcoming',
-    date: '10 Feb 2026',
-    dayOfMonth: 10,
-    time: '04:00 PM',
-    location: 'Incubation Center',
-    xp: 1000,
-    attendees: 100,
-    sectionParticipants: 8,
-    prizePool: "Seed Funding",
-    tracks: ["SaaS", "D2C"],
-    posterUrl: "https://images.unsplash.com/photo-1556761175-5973dc0f32b7?auto=format&fit=crop&q=80&w=1000",
-    description: "Got an idea? Pitch it to real VCs. 5 minutes to impress.",
-    jokes: ["We are the Uber for Tacos.", "Pre-revenue, pre-product, post-hype."],
-    timeline: [{ time: "04:00 PM", title: "Pitches Start", desc: "3 min pitch, 2 min Q&A." }],
-    venueDetails: "Incubation Center.",
-    eligibility: "Student Founders",
-    teamSize: "1-5 Members",
-    certification: false,
-    organizerContact: { phone: "+1 (555) 999-0000", email: "startup@artemis.events" },
-    isPaid: false,
-    registrationFee: "Free",
-    duration: "5 Hours",
-    format: {
-      rounds: ["Elevator Pitch", "Detailed Business Plan", "VC Feedback"],
-      type: 'Offline',
-      mode: 'Team'
-    },
-    dos: ["Prepare a clear pitch deck", "Be ready for tough questions", "Network with mentors"],
-    donts: ["No exceeding the time limit", "No unprofessional behavior"],
-    rules: [
-      "Pitch deck must be submitted 24 hours in advance.",
-      "At least one founder must be present."
-    ]
-  },
-  {
-    id: 'e_design',
-    title: 'Product Design Sprint',
-    category: 'Competition',
-    type: 'Upcoming',
-    date: '03 Feb 2026',
-    dayOfMonth: 3,
-    time: '09:00 AM',
-    location: 'Design Studio',
-    xp: 900,
-    attendees: 60,
-    sectionParticipants: 12,
-    prizePool: "Wacom Tablets",
-    tracks: ["UX Research", "Prototyping"],
-    posterUrl: "https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&q=80&w=1000",
-    description: "Solve a user problem in 8 hours. Sketch, wireframe, and prototype.",
-    jokes: ["Make the logo bigger.", "Comic Sans is forbidden."],
-    timeline: [{ time: "09:00 AM", title: "Problem Brief", desc: "User personas." }],
-    venueDetails: "Design Studio.",
-    eligibility: "Designers",
-    teamSize: "2-3 Members",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 001-1111", email: "design.sprint@artemis.events" },
-    isPaid: true,
-    registrationFee: "₹399",
-    duration: "8 Hours",
-    format: {
-      rounds: ["UX Problem Brief", "Prototyping Session", "Final Presentation"],
-      type: 'Offline',
-      mode: 'Team'
-    },
-    dos: ["Focus on user needs", "Use clean UI patterns", "Iterate quickly"],
-    donts: ["No ignoring accessibility standards", "No finishing early without testing"],
-    rules: [
-      "Final prototype must be interactive.",
-      "Design process documentation is mandatory."
-    ]
-  },
-  {
-    id: 'e_datascience',
-    title: 'Kaggle Masterclass',
-    category: 'Workshop',
-    type: 'Upcoming',
-    date: '27 Jan 2026',
-    dayOfMonth: 27,
-    time: '03:00 PM',
-    location: 'Data Lab',
-    xp: 700,
-    attendees: 90,
-    sectionParticipants: 20,
-    tracks: ["Pandas", "Scikit-Learn"],
-    posterUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1000",
-    description: "From CSV to predictions. Learn how to win data science competitions.",
-    jokes: ["It's just linear regression in a trench coat.", "Data cleaning is 90% of the job."],
-    timeline: [{ time: "03:00 PM", title: "EDA", desc: "Exploratory Data Analysis." }],
-    venueDetails: "Data Lab.",
-    eligibility: "Data Enthusiasts",
-    teamSize: "Individual",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 222-3333", email: "data@artemis.events" },
-    isPaid: true,
-    registrationFee: "₹199",
-    duration: "4 Hours",
-    format: {
-      rounds: ["Intro to Kaggle", "Feature Engineering", "Model Competition"],
-      type: 'Online',
-      mode: 'Solo'
-    },
-    dos: ["Optimize your model", "Document your code", "Use clean visualizations"],
-    donts: ["No private data sharing", "No manual label editing"],
-    rules: [
-      "Final model must be submitted as a notebook.",
-      "Accuracy must be reproducible."
-    ]
-  },
-  {
-    id: 'e_drone',
-    title: 'Drone Racing League',
-    category: 'Competition',
-    type: 'Upcoming',
-    date: '18 Feb 2026',
-    dayOfMonth: 18,
-    time: '11:00 AM',
-    location: 'Sports Field',
-    xp: 1200,
-    attendees: 400,
-    sectionParticipants: 8,
-    prizePool: "DJI Gear",
-    tracks: ["FPV Racing"],
-    posterUrl: "https://images.unsplash.com/photo-1524143986875-3b098d78b363?auto=format&fit=crop&q=80&w=1000",
-    description: "High speed FPV drone racing through obstacle courses.",
-    jokes: ["I believe I can fly... into a tree.", "Propellers are sharp."],
-    timeline: [{ time: "11:00 AM", title: "Qualifiers", desc: "Time trials." }],
-    venueDetails: "College Sports Field.",
-    eligibility: "Licensed Pilots",
-    teamSize: "Individual",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 444-6666", email: "drone@artemis.events" },
-    isPaid: true,
-    registrationFee: "₹1,200",
-    duration: "6 Hours",
-    format: {
-      rounds: ["Technical Inspection", "Time Trials", "Circuit Race"],
-      type: 'Offline',
-      mode: 'Solo'
-    },
-    dos: ["Bring extra batteries", "Check your FPV signal", "Follow the course markers"],
-    donts: ["No flying outside the course", "No dangerous maneuvers"],
-    rules: [
-      "Drones must meet the safety inspection.",
-      "Race points awarded for lap time and gates cleared."
-    ]
-  },
-  {
-    id: 'e_cloud',
-    title: 'AWS DeepRacer',
-    category: 'Competition',
-    type: 'Upcoming',
-    date: '12 Feb 2026',
-    dayOfMonth: 12,
-    time: '10:00 AM',
-    location: 'Main Hall',
-    xp: 1800,
-    attendees: 150,
-    sectionParticipants: 10,
-    prizePool: "AWS Credits",
-    tracks: ["Reinforcement Learning"],
-    posterUrl: "https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&fit=crop&q=80&w=1000",
-    description: "Train a reinforcement learning model to drive a car around a track autonomously.",
-    jokes: ["My model drives better than me.", "Reward function hacking."],
-    timeline: [{ time: "10:00 AM", title: "Model Upload", desc: "Testing on track." }],
-    venueDetails: "Main Hall.",
-    eligibility: "CS Students",
-    teamSize: "Individual",
-    certification: true,
-    organizerContact: { phone: "+1 (555) 555-7777", email: "cloud@artemis.events" },
-    isPaid: false,
-    registrationFee: "Free",
-    duration: "4 Hours",
-    format: {
-      rounds: ["RL Fundamentals", "DeepRacer Training", "Live Race"],
-      type: 'Offline',
-      mode: 'Solo'
-    },
-    dos: ["Focus on reward functions", "Monitor training progress", "Ask AWS experts for help"],
-    donts: ["No manual intervention during racing", "No using pre-trained public models"],
-    rules: [
-      "Participants must use the provided AWS environment.",
-      "Top racers win AWS credits."
     ]
   }
 ];
@@ -1022,7 +775,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showPeersModal, setShowPeersModal] = useState(false);
   
-  const [showTutorial, setShowTutorial] = useState(false);
+
   
   const [invitedPeersMap, setInvitedPeersMap] = useState<Record<string, Set<string>>>({});
 
@@ -1035,19 +788,6 @@ export const EventsPage: React.FC<EventsPageProps> = ({
     const interval = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(() => {
-    const tutorialDone = localStorage.getItem('campus_pilot_tutorial_done');
-    if (!tutorialDone) {
-      const timer = setTimeout(() => setShowTutorial(true), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  const handleTutorialComplete = () => {
-    setShowTutorial(false);
-    localStorage.setItem('campus_pilot_tutorial_done', 'true');
-  };
 
   useEffect(() => {
     if (externalExploringId) {
@@ -1103,13 +843,42 @@ export const EventsPage: React.FC<EventsPageProps> = ({
       const matchesSearch = e.title.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesDate = selectedDate ? e.dayOfMonth === selectedDate : true;
       return matchesCategory && matchesSearch && matchesDate;
+    }).sort((a, b) => {
+      const getPriority = (id: string) => {
+        if (registeredIds.has(id) || interestedIds.has(id)) return 2;
+        if (notInterestedIds.has(id)) return 0;
+        return 1;
+      };
+      const priorityDiff = getPriority(b.id) - getPriority(a.id);
+      if (priorityDiff !== 0) return priorityDiff;
+      
+      // Secondary sort: parse dates for timeline order
+      const dateA = parseDateTime(a.date, a.time);
+      const dateB = parseDateTime(b.date, b.time);
+      if (!dateA || !dateB) return 0;
+      return dateA.getTime() - dateB.getTime();
     });
-  }, [activeFilter, searchQuery, selectedDate]);
+  }, [activeFilter, searchQuery, selectedDate, registeredIds, interestedIds, notInterestedIds]);
 
   const categories = useMemo(() => {
-    const nearDeadline = filteredData.filter(e => e.dayOfMonth >= TODAY_DAY && e.dayOfMonth <= TODAY_DAY + 3);
-    const upcoming = filteredData.filter(e => e.dayOfMonth > TODAY_DAY + 3);
-    const past = filteredData.filter(e => e.dayOfMonth < TODAY_DAY);
+    const nearDeadline = filteredData.filter(e => {
+      const d = parseDateTime(e.date, e.time);
+      if (!d) return false;
+      const diff = d.getTime() - now.getTime();
+      return diff > 0 && diff <= (3 * 24 * 60 * 60 * 1000); // within 3 days
+    });
+    const upcoming = filteredData.filter(e => {
+      const d = parseDateTime(e.date, e.time);
+      if (!d) return false;
+      const diff = d.getTime() - now.getTime();
+      return diff > (3 * 24 * 60 * 60 * 1000); // more than 3 days
+    });
+    const past = filteredData.filter(e => {
+      const d = parseDateTime(e.date, e.time);
+      if (!d) return false;
+      const diff = d.getTime() - now.getTime();
+      return diff <= 0;
+    });
     return { nearDeadline, upcoming, past };
   }, [filteredData]);
 
@@ -1138,48 +907,17 @@ export const EventsPage: React.FC<EventsPageProps> = ({
     setNewTeamData({ name: '', hackathon: '', description: '', maxMembers: 4 });
   };
 
-  const tutorialSteps: TutorialStep[] = [
-    {
-      targetId: 'tour-filter',
-      title: 'Smart Filters',
-      content: 'Use these filters to quickly find specific types of events like Hackathons, Workshops, or Fests.',
-      position: 'bottom'
-    },
-    {
-      targetId: 'tour-closing',
-      title: 'Closing Soon',
-      content: 'These events are starting or closing registration soon. Act fast to secure your spot!',
-      position: 'top'
-    },
-    {
-      targetId: 'tour-upcoming',
-      title: 'Upcoming Events',
-      content: 'Browse all future events here. Plan your schedule ahead of time.',
-      position: 'top'
-    },
-    {
-      targetId: 'tour-past',
-      title: 'Past Archives',
-      content: 'View previous events to see what you missed or check out winners and galleries.',
-      position: 'top'
-    }
-  ];
+
 
   return (
     <div 
       ref={scrollContainerRef}
       onScroll={handleScroll}
       style={{ willChange: 'transform' }}
-      className={`flex-1 flex flex-col transition-all pb-32 ${isCalendarOpen ? 'pr-[320px]' : ''} max-w-7xl mx-auto w-full`}
+      className={`flex-1 flex flex-col transition-all pb-32 ${isCalendarOpen ? 'pr-[320px]' : ''} max-w-7xl mx-auto w-full h-full overflow-y-auto`}
     >
       
-      {showTutorial && (
-        <TutorialOverlay 
-          steps={tutorialSteps} 
-          onClose={handleTutorialComplete} 
-          onComplete={handleTutorialComplete} 
-        />
-      )}
+
 
       <EventsHeader 
         showTeamsView={showTeamsView}
@@ -1235,6 +973,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
             newTeamData={newTeamData}
             setNewTeamData={setNewTeamData}
             handleCreateTeam={handleCreateTeam}
+            setShowTeamsView={setShowTeamsView}
           />
         </div>
       )}
@@ -1300,6 +1039,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
         onInvitePeer={handleInvitePeer}
         PEERS_MOCK={PEERS_MOCK}
       />
+
+      <BackToTop showBackToTop={showBackToTop} scrollToTop={scrollToTop} />
 
       {/* Request Sent Toast */}
       <div className={`fixed bottom-8 left-1/2 -translate-x-1/2 z-[2500] transition-all  ${

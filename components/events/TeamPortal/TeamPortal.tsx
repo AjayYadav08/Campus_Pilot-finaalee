@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ChevronLeft, Users2, ChevronRight } from 'lucide-react';
 import { Team, ChatMessage, JoinRequest } from '../types';
 import TeamChat from './TeamChat';
@@ -6,6 +6,7 @@ import TeamMembers from './TeamMembers';
 import TeamRequests from './TeamRequests';
 import TeamDiscovery from './TeamDiscovery';
 import CreateTeamForm from './CreateTeamForm';
+import { useTutorial } from '../../tutorial/TutorialContext';
 
 interface TeamPortalProps {
   activeTeam: Team | null;
@@ -47,6 +48,7 @@ interface TeamPortalProps {
   newTeamData: any;
   setNewTeamData: (data: any) => void;
   handleCreateTeam: () => void;
+  setShowTeamsView: (val: boolean) => void;
 }
 
 const TeamPortal: React.FC<TeamPortalProps> = (props) => {
@@ -64,8 +66,19 @@ const TeamPortal: React.FC<TeamPortalProps> = (props) => {
     teamMessages, chatInput, setChatInput, sendMessage, chatEndRef,
     handleAcceptRequest, handleRejectRequest,
     teamSearchQuery, setTeamSearchQuery, filteredTeamsPool, setPreviewingTeam,
-    newTeamData, setNewTeamData, handleCreateTeam
+    newTeamData, setNewTeamData, handleCreateTeam,
+    setShowTeamsView
   } = props;
+
+  const { startFlow, advanceStep } = useTutorial();
+
+  useEffect(() => {
+    if (!activeTeam && !showCreateTeamForm && !showJoinTeamView) {
+      startFlow('teams');
+    } else if (activeTeam) {
+      startFlow('team_details');
+    }
+  }, [activeTeam, showCreateTeamForm, showJoinTeamView, startFlow]);
 
   if (activeTeam) {
     return (
@@ -103,7 +116,14 @@ const TeamPortal: React.FC<TeamPortalProps> = (props) => {
                 return (
                   <button 
                     key={tab}
-                    onClick={() => setActiveTab(tab)}
+                    id={tab === 'Members' ? 'tour-team-members-btn' : undefined}
+                    onClick={() => {
+                       setActiveTab(tab);
+                       // Tutorial progression check for Members tab
+                       if (tab === 'Members') {
+                          advanceStep();
+                       }
+                    }}
                     className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 ${activeTab === tab ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
                   >
                     {tab}
@@ -178,10 +198,19 @@ const TeamPortal: React.FC<TeamPortalProps> = (props) => {
   if (showJoinTeamView) return <TeamDiscovery setShowJoinTeamView={setShowJoinTeamView} teamSearchQuery={teamSearchQuery} setTeamSearchQuery={setTeamSearchQuery} filteredTeamsPool={filteredTeamsPool} setPreviewingTeam={setPreviewingTeam} />;
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2 mb-2">
-        <Users2 className="w-5 h-5 text-indigo-500" />
-        <h2 className="text-base font-black text-slate-400 uppercase tracking-widest">Your Hackathon Teams</h2>
+    <div className="space-y-4" id="tour-my-teams-list">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <Users2 className="w-5 h-5 text-indigo-500" />
+          <h2 className="text-base font-black text-slate-400 uppercase tracking-widest">Your Hackathon Teams</h2>
+        </div>
+        <button 
+          onClick={() => setShowTeamsView(false)}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all group"
+        >
+          <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Back to Events
+        </button>
       </div>
       {teams.map(team => (
         <button

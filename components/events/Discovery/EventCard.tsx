@@ -7,6 +7,7 @@ interface EventCardProps {
   event: CampusEvent;
   isInterested: boolean;
   isRegistered: boolean;
+  isNotInterested: boolean;
   isPast: boolean;
   isUrgent: boolean;
   timeString: string | null;
@@ -19,6 +20,7 @@ const EventCard: React.FC<EventCardProps> = ({
   event,
   isInterested,
   isRegistered,
+  isNotInterested,
   isPast,
   isUrgent,
   timeString,
@@ -67,7 +69,7 @@ const EventCard: React.FC<EventCardProps> = ({
         </div>
 
         {isRegistered && (
-          <div className="absolute top-5 right-5 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white">
+          <div className="absolute top-5 right-5 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white shadow-lg border-2 border-white z-20">
             <Ticket className="w-5 h-5" />
           </div>
         )}
@@ -83,9 +85,14 @@ const EventCard: React.FC<EventCardProps> = ({
            </button>
            <button 
              onClick={(e) => { e.stopPropagation(); markNotInterested(event.id); }}
-             className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all shadow-lg"
+             className={`w-10 h-10 rounded-full border transition-all shadow-lg flex items-center justify-center ${
+               isNotInterested 
+                 ? 'bg-slate-900 border-slate-800 text-white' 
+                 : 'bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20'
+             }`}
+             title={isNotInterested ? "Click to remove dislike" : "Dislike this event"}
            >
-             <ThumbsDown className="w-5 h-5" />
+             <ThumbsDown className={`w-5 h-5 ${isNotInterested ? 'fill-current' : ''}`} />
            </button>
         </div>
 

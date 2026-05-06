@@ -58,22 +58,48 @@ const EventGrid: React.FC<EventGridProps> = ({
 
           if (eventDate) {
             const diff = eventDate.getTime() - now.getTime();
-            
-            if (diff > (48 * 60 * 60 * 1000)) {
-               const days = Math.ceil(diff / (24 * 60 * 60 * 1000));
-               timeString = `${days} days left`;
-               isUrgent = false;
-            } else if (diff < 0) {
-               timeString = formatTimeAgo(diff);
-               isUrgent = false;
-               isPast = true;
+            const absDiff = Math.abs(diff);
+            const isToday = eventDate.toDateString() === now.toDateString();
+
+            if (diff > 0) {
+              // Future Events
+              if (isToday) {
+                timeString = title === "Closing Soon" ? "Ends today" : "Starting today";
+                isUrgent = true;
+              } else if (diff < (24 * 60 * 60 * 1000)) {
+                // Less than 24 hours
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                timeString = `${hours}h ${mins}m left`;
+                isUrgent = true;
+              } else if (title === "Closing Soon") {
+                const days = Math.ceil(diff / (24 * 60 * 60 * 1000));
+                timeString = `${days} days left`;
+                isUrgent = diff < (48 * 60 * 60 * 1000);
+              } else {
+                const days = Math.ceil(diff / (24 * 60 * 60 * 1000));
+                timeString = `Starts in ${days} days`;
+                isUrgent = false;
+              }
             } else {
-               timeString = formatTimeDiff(diff);
-               isUrgent = true;
+              // Past Events
+              isPast = true;
+              if (isToday) {
+                timeString = "Ended today";
+              } else {
+                const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+                if (days > 0) {
+                  timeString = `Ended ${days} days ago`;
+                } else {
+                  const hours = Math.floor(absDiff / (1000 * 60 * 60));
+                  timeString = `Ended ${hours} hours ago`;
+                }
+              }
+              isUrgent = false;
             }
-          } else if (isPast) {
-             timeString = "Event ended";
-             isUrgent = false;
+          } else {
+            timeString = isPast ? "Event ended" : "Date pending";
+            isUrgent = false;
           }
 
           return (
@@ -82,6 +108,7 @@ const EventGrid: React.FC<EventGridProps> = ({
               event={event}
               isInterested={isInterested}
               isRegistered={isRegistered}
+              isNotInterested={isNotInterested}
               isPast={isPast}
               isUrgent={isUrgent}
               timeString={timeString}

@@ -1,29 +1,28 @@
-
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ChevronRight, AlertCircle } from 'lucide-react';
+import { X, ChevronRight, AlertCircle, MousePointer2 } from 'lucide-react';
+import { useTutorial } from './tutorial/TutorialContext';
+import { TUTORIAL_FLOWS } from './tutorial/tutorialFlows';
 
 export interface TutorialStep {
   targetId: string;
   title: string;
   content: string;
   position?: 'top' | 'bottom' | 'left' | 'right';
+  requiresAction?: boolean;
 }
 
-interface TutorialOverlayProps {
-  steps: TutorialStep[];
-  onClose: () => void;
-  onComplete: () => void;
-}
-
-export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose, onComplete }) => {
-  const [currentStep, setCurrentStep] = useState(0);
+export const TutorialOverlay: React.FC = () => {
+  const { activeFlow, currentStepIndex, advanceStep, skipFlow } = useTutorial();
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-  const step = steps[currentStep];
   const reqRef = useRef<number | null>(null);
 
+  const steps = activeFlow ? TUTORIAL_FLOWS[activeFlow] : [];
+  const step = activeFlow ? steps[currentStepIndex] : null;
+
   const updateRect = () => {
+    if (!step) return;
     const element = document.getElementById(step.targetId);
     if (element) {
       const newRect = element.getBoundingClientRect();
@@ -34,11 +33,13 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
         return prev;
       });
     } else {
-      setRect(null); // Explicitly set null if not found
+      setRect(null);
     }
   };
 
   useLayoutEffect(() => {
+    if (!activeFlow || !step) return;
+    
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
 
     const element = document.getElementById(step.targetId);
@@ -65,15 +66,9 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', updateRect, true);
     };
-  }, [currentStep, step.targetId]);
+  }, [activeFlow, currentStepIndex, step?.targetId]);
 
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(prev => prev + 1);
-    } else {
-      onComplete();
-    }
-  };
+  if (!activeFlow || !step) return null;
 
   // --- Fallback for missing elements: Centered Modal ---
   if (!rect) {
@@ -83,11 +78,11 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
              <div className="flex justify-between items-start">
                 <div className="flex items-center gap-2">
                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs shadow-sm">
-                     {currentStep + 1}/{steps.length}
+                     {currentStepIndex + 1}/{steps.length}
                    </div>
                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-wide">{step.title}</h3>
                 </div>
-                <button onClick={onClose} className="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-50 rounded-full transition-colors">
+                <button onClick={skipFlow} className="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-50 rounded-full transition-colors">
                   <X className="w-4 h-4" />
                 </button>
              </div>
@@ -103,12 +98,14 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
              </div>
 
              <div className="flex gap-3 mt-2">
-               <button onClick={onClose} className="flex-1 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition-colors">
+               <button onClick={skipFlow} className="flex-1 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition-colors">
                   Skip
                </button>
-               <button onClick={handleNext} className="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-black transition-all shadow-lg shadow-slate-200">
-                  {currentStep === steps.length - 1 ? 'Finish' : 'Next'} 
-               </button>
+               {!step.requiresAction && (
+                 <button onClick={advanceStep} className="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-black transition-all shadow-lg shadow-slate-200">
+                    {currentStepIndex === steps.length - 1 ? 'Finish' : 'Next'} 
+                 </button>
+               )}
              </div>
          </div>
       </div>,
@@ -202,26 +199,32 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
     borderRadius: '16px',
     boxShadow: '0 0 0 9999px rgba(0, 0, 0, 0.75)',
     zIndex: 10000,
-    pointerEvents: 'none',
+    pointerEvents: 'none', // Always allow clicking through to the underlying UI
     transition: 'all 0.1s ease-out'
   };
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] pointer-events-none">
-      <div style={highlightStyle} className="ring-2 ring-blue-500/50 animate-pulse" />
+      <div style={highlightStyle} className={`ring-2 ${step.requiresAction ? 'ring-emerald-500 ring-offset-4 animate-pulse' : 'ring-blue-500/50'}`}>
+        {step.requiresAction && (
+          <div className="absolute -top-3 -right-3 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+            <MousePointer2 className="w-3 h-3 text-white" />
+          </div>
+        )}
+      </div>
       <div 
         style={tooltipStyle} 
-        className="pointer-events-auto bg-white p-6 rounded-[24px] shadow-2xl border border-slate-100 flex flex-col gap-4   -95 "
+        className="pointer-events-auto bg-white p-6 rounded-[24px] shadow-2xl border border-slate-100 flex flex-col gap-4 animate-in zoom-in-95 fade-in duration-200"
       >
         <div style={arrowStyle} className="shadow-sm" />
         <div className="flex justify-between items-start relative z-10">
            <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs shadow-sm">
-                {currentStep + 1}/{steps.length}
+                {currentStepIndex + 1}/{steps.length}
               </div>
               <h3 className="text-sm font-black text-slate-900 uppercase tracking-wide">{step.title}</h3>
            </div>
-           <button onClick={onClose} className="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-50 rounded-full transition-colors">
+           <button onClick={skipFlow} className="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-50 rounded-full transition-colors">
              <X className="w-4 h-4" />
            </button>
         </div>
@@ -229,13 +232,19 @@ export const TutorialOverlay: React.FC<TutorialOverlayProps> = ({ steps, onClose
           {step.content}
         </p>
         <div className="flex gap-3 mt-2 relative z-10">
-          <button onClick={onClose} className="flex-1 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
+          <button onClick={skipFlow} className="flex-1 py-3 rounded-xl text-xs font-bold text-slate-500 hover:bg-slate-50 transition-colors border border-transparent hover:border-slate-200">
              Skip
           </button>
-          <button onClick={handleNext} className="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-black transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95">
-             {currentStep === steps.length - 1 ? 'Finish' : 'Next'} 
-             {currentStep !== steps.length - 1 && <ChevronRight className="w-3 h-3" />}
-          </button>
+          {!step.requiresAction ? (
+            <button onClick={advanceStep} className="flex-1 py-3 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-black transition-all shadow-lg shadow-slate-200 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95">
+               {currentStepIndex === steps.length - 1 ? 'Finish' : 'Next'} 
+               {currentStepIndex !== steps.length - 1 && <ChevronRight className="w-3 h-3" />}
+            </button>
+          ) : (
+            <div className="flex-1 py-3 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-600 border border-emerald-100 flex items-center justify-center gap-2">
+               Action Required
+            </div>
+          )}
         </div>
       </div>
     </div>,
